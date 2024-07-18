@@ -74,6 +74,7 @@ function exportCharacterSheet() {
 
 <template>
   <div class="page">
+    <div style="position: absolute; top: 0; left: 0;height: 20px; width: 20px; background-color: red;"></div>
     <div class="actions">
       <button @click="openImporter">Import</button>
       <Modal v-if="importModalVisible" @close="importModalVisible = false">
