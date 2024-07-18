@@ -153,6 +153,11 @@ function exportCharacterSheet() {
 body {
   place-items: baseline;
 }
+
+#app:root {
+  color: #213547;
+  background-color: #ffffff;
+}
 </style>
 
 <style lang="scss" scoped>
