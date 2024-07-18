@@ -1,3 +1,3 @@
-window.onload(() => {
-document.getElementById('testing').innerHTML = 'LOADED';
-});
+window.onload = (event) => {
+    document.getElementById('testing').innerHTML = 'LOADED';
+    };
