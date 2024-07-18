@@ -13,7 +13,7 @@ function closeModal() {
                 <h3>
                     <slot name="header"></slot>
                 </h3>
-                <button class="close" @click="closeModal">X</button>
+                <button class="close" @click="closeModal">✕</button>
             </div>
 
             <slot name="content"></slot>
@@ -49,10 +49,9 @@ function closeModal() {
 .close {
     background-color: transparent;
     border: none;
-    font-weight: 900;
     font-size: 24px;
+    font-weight: 900;
     padding: 0 16px;
-    font-family: cursive;
 
     &:focus,
     &:focus-visible {

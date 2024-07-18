@@ -154,15 +154,20 @@ body {
   place-items: baseline;
 }
 
-#app:root {
-  color: #213547;
+:root {
   background-color: #ffffff;
+  color: #213547;
 }
-</style>
 
-<style lang="scss" scoped>
+textarea,
+button,
 input {
   background-color: rgb(222 229 255);
+  color: #213547;
+}
+
+input,
+textarea {
   border: none;
   border-bottom: 1px solid rgb(0 0 0);
   font-size: 16px;
@@ -174,6 +179,12 @@ input {
   }
 }
 
+button:hover {
+  border-color: rgb(0 120 215);
+}
+</style>
+
+<style lang="scss" scoped>
 .actions {
   margin-bottom: 32px;
   text-align: right;
@@ -194,20 +205,17 @@ input {
 }
 
 .character-name {
-  width: 33%;
   border: 2px solid rgb(0 0 0);
-  padding: 8px;
   height: fit-content;
   margin-right: 24px;
+  padding: 8px;
+  width: 33%;
 }
 
 .character-header-info {
   border: 2px solid rgb(0 0 0);
   padding: 8px;
   width: 66%;
-  // display: flex;
-  // justify-content: space-between;
-  // flex-wrap: wrap;
 }
 
 .grid {
@@ -215,7 +223,6 @@ input {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
-  // grid-auto-rows: minmax(100px, auto);
 }
 
 .header-info-block {
@@ -227,8 +234,8 @@ input {
   }
 
   >span {
-    text-align: left;
     font-size: 14px;
+    text-align: left;
   }
 
   input {
@@ -245,10 +252,9 @@ input {
 }
 
 .json-output {
-  background-color: rgb(0, 0, 0);
-  // border: 3px solid rgb(0 0 0);
+  background-color: rgb(222 229 255);
+  color: #213547;
   padding: 16px;
-  color: rgb(255 255 255);
   word-break: break-all;
 }
 
