@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { CharacterSheet } from '../models/CharacterSheet';
+import { CharacterSheet, CharacterSheetType } from '../models/CharacterSheet';
 import { isCharacterSheet } from '../models/CharacterSheet.guard';
 import Modal from './Modal.vue'
 
 //TODO
-// input json validation
 // leave check
+// Edit character sheet type
 
 const inputString = ref('')
 const outputString = ref('')
@@ -14,19 +14,10 @@ const importModalVisible = ref(false);
 const exportModalVisible = ref(false);
 const showImportError = ref(false);
 
-// const characterName = ref('')
-// const classAndLevel = ref('')
-// const background = ref('')
-// const playerName = ref('')
-// const race = ref('')
-// const alignment = ref('')
-// const experiencePoints = ref('')
-
-
 const emptyCharacterSheet: CharacterSheet = {
   meta: {
     version: '0.0.1',
-    type: 'dnd-5e'
+    type: CharacterSheetType.DND_5E
   },
   data: {
     characterName: '',
@@ -75,31 +66,39 @@ function exportCharacterSheet() {
 <template>
   <div class="page">
     <div class="actions">
-      <button @click="openImporter">Import</button>
-      <Modal v-if="importModalVisible" @close="importModalVisible = false">
-        <template #header>
-          Import your character sheet
-        </template>
-        <template #content>
-          <div class="import-block">
-            <textarea v-model="inputString"></textarea>
-            <span v-if="showImportError" class="error-message">Failed to import json</span>
-            <button @click="importCharacterSheet">Import</button>
-          </div>
-        </template>
-      </Modal>
+      <div class="logo">
+        <img v-if="characterSheet.meta.type === CharacterSheetType.DND_5E" src="./../assets/dnd-5e-logo.png"
+          alt="Dungeons & Dragons 5th Edition" />
+        <img v-if="characterSheet.meta.type === CharacterSheetType.SW_5E" src="./../assets/sw-5e-logo.png"
+          alt="Star Wars 5th Edition" />
+      </div>
+      <div>
+        <button @click="openImporter">Import</button>
+        <Modal v-if="importModalVisible" @close="importModalVisible = false">
+          <template #header>
+            Import your character sheet
+          </template>
+          <template #content>
+            <div class="import-block">
+              <textarea v-model="inputString"></textarea>
+              <span v-if="showImportError" class="error-message">Failed to import json</span>
+              <button @click="importCharacterSheet">Import</button>
+            </div>
+          </template>
+        </Modal>
 
-      <button @click="exportCharacterSheet">Export</button>
-      <Modal v-if="exportModalVisible" @close="exportModalVisible = false">
-        <template #header>
-          Your character sheet as json
-        </template>
-        <template #content>
-          <div class="json-output">
-            {{ outputString }}
-          </div>
-        </template>
-      </Modal>
+        <button @click="exportCharacterSheet">Export</button>
+        <Modal v-if="exportModalVisible" @close="exportModalVisible = false">
+          <template #header>
+            Your character sheet as json
+          </template>
+          <template #content>
+            <div class="json-output">
+              {{ outputString }}
+            </div>
+          </template>
+        </Modal>
+      </div>
     </div>
 
     <div class="heading">
@@ -186,6 +185,8 @@ button:hover {
 
 <style lang="scss" scoped>
 .actions {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 32px;
   text-align: right;
 
@@ -271,5 +272,13 @@ button:hover {
 .error-message {
   color: rgb(175, 0, 0);
   display: block;
+}
+
+.logo {
+  height: 50px;
+
+  >img {
+    height: 100%;
+  }
 }
 </style>

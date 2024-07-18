@@ -2,7 +2,7 @@
  * Generated type guards for "CharacterSheet.ts".
  * WARNING: Do not manually change this file.
  */
-import { CharacterSheet } from "./CharacterSheet";
+import { CharacterSheet, CharacterSheetType } from "./CharacterSheet";
 
 export function isCharacterSheet(obj: unknown): obj is CharacterSheet {
     const typedObj = obj as CharacterSheet
@@ -14,7 +14,7 @@ export function isCharacterSheet(obj: unknown): obj is CharacterSheet {
             typeof typedObj["meta"] === "object" ||
             typeof typedObj["meta"] === "function") &&
         typeof typedObj["meta"]["version"] === "string" &&
-        typeof typedObj["meta"]["type"] === "string" &&
+        isCharacterSheetType(typedObj["meta"]["type"]) as boolean &&
         (typedObj["data"] !== null &&
             typeof typedObj["data"] === "object" ||
             typeof typedObj["data"] === "function") &&
@@ -25,5 +25,13 @@ export function isCharacterSheet(obj: unknown): obj is CharacterSheet {
         typeof typedObj["data"]["race"] === "string" &&
         typeof typedObj["data"]["alignment"] === "string" &&
         typeof typedObj["data"]["experiencePoints"] === "string"
+    )
+}
+
+export function isCharacterSheetType(obj: unknown): obj is CharacterSheetType {
+    const typedObj = obj as CharacterSheetType
+    return (
+        (typedObj === CharacterSheetType.DND_5E ||
+            typedObj === CharacterSheetType.SW_5E)
     )
 }

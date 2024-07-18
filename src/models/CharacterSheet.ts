@@ -2,7 +2,7 @@
 export interface CharacterSheet {
     meta: {
       version: string;
-      type: string;
+      type: CharacterSheetType;
     };
     data: {
       characterName: string;
@@ -13,4 +13,9 @@ export interface CharacterSheet {
       alignment: string;
       experiencePoints: string;
     };
+  }
+
+  export enum CharacterSheetType {
+    DND_5E = 'dnd-5e',
+    SW_5E = 'sw-5e',
   }
