@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { ref, onMounted, onBeforeMount } from 'vue'
 import { CharacterSheet, CharacterSheetType } from '../models/CharacterSheet';
 import HeadingActions from './HeadingActions.vue';
 import Heading from './Heading.vue';
 import AttributesAndSkills from './AttributesAndSkills.vue';
 
 //TODO
-// leave check
 // Edit character sheet type
 
 const emptyCharacterSheet: CharacterSheet = {
@@ -25,16 +24,38 @@ const emptyCharacterSheet: CharacterSheet = {
   },
 }
 
-const characterSheet = ref(emptyCharacterSheet)
+const characterSheet = ref();
+const importedCharacterSheet = ref();
 
-function setCharacterSheet(data: CharacterSheet) {
+onBeforeMount(() => {
+  characterSheet.value = JSON.parse(JSON.stringify(emptyCharacterSheet));
+});
+
+onMounted(() => {
+  window.addEventListener('beforeunload', (event) => {
+    const sheetString = JSON.stringify(characterSheet.value);
+    const emptySheetString = JSON.stringify(emptyCharacterSheet);
+    const importedSheetString = JSON.stringify(importedCharacterSheet.value);
+    if (sheetString === emptySheetString || sheetString === importedSheetString) {
+      return;
+    }
+
+    const answer = window.confirm('You have unsaved changes, are you sure you want to leave?')
+    if (!answer) {
+      event.preventDefault();
+    }
+  });
+});
+
+function setImportedCharacterSheet(data: CharacterSheet) {
   characterSheet.value = data;
+  importedCharacterSheet.value = JSON.parse(JSON.stringify(data));
 }
 </script>
 
 <template>
   <div class="page">
-    <HeadingActions :characterSheet="characterSheet" @imported="setCharacterSheet" />
+    <HeadingActions :characterSheet="characterSheet" @imported="setImportedCharacterSheet" />
 
     <Heading :characterSheet="characterSheet" />
 

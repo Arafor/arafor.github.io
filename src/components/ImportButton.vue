@@ -19,16 +19,13 @@ function handleImport(data: string, type: string) {
 
     let importedData;
     try {
-        console.log(data);
         importedData = JSON.parse(data);
     } catch {
-        console.log('invalid json');
         importErrors.value[type].push('Failed to parse json');
         return;
     }
 
     if (!isCharacterSheet(importedData)) {
-        console.log('invalid character sheet');
         importErrors.value[type].push('Json does not match character sheet structure');
         return;
     }
