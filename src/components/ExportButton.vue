@@ -17,12 +17,12 @@ function exportCharacterSheet() {
 }
 
 function downloadJson() {
-    if (!props.characterSheet.data.characterName) {
+    if (!props.characterSheet.data.characterName.text) {
         return;
     }
     const element = document.createElement('a');
     element.setAttribute('href', `data:text/json;charset=utf-8,${encodeURIComponent(outputString.value)}`);
-    element.setAttribute('download', `${props.characterSheet.data.characterName}.json`);
+    element.setAttribute('download', `${props.characterSheet.data.characterName.text}.json`);
     element.dispatchEvent(new MouseEvent('click'));
 }
 </script>

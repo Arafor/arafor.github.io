@@ -5,14 +5,19 @@ export interface CharacterSheet {
       type: CharacterSheetType;
     };
     data: {
-      characterName: string;
-      classAndLevel: string;
-      background: string;
-      playerName: string;
-      race: string;
-      alignment: string;
-      experiencePoints: string;
+      characterName: InputType;
+      species: InputType;
+      background: InputType;
+      playerName: InputType;
+      classAndLevel: InputType[];
+      alignment: InputType;
+      experiencePoints: InputType;
     };
+  }
+
+  export interface InputType {
+    text:string;
+    locked: boolean;
   }
 
   export enum CharacterSheetType {

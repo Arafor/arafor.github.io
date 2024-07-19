@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { CharacterSheet } from '../models/CharacterSheet';
+import CharacterSheetInput from './CharacterSheetInput.vue';
+import CharacterSheetInputArray from './CharacterSheetInputArray.vue';
 
 defineProps<{
     characterSheet: CharacterSheet,
@@ -10,7 +12,7 @@ defineProps<{
     <div class="heading">
         <div class="character-name">
             <div class="header-info-block header-info-block--full">
-                <input type="text" v-model="characterSheet.data.characterName">
+                <CharacterSheetInput :character-sheet-input="characterSheet.data.characterName" />
                 <span>Character Name</span>
             </div>
         </div>
@@ -18,27 +20,27 @@ defineProps<{
         <div class="character-header-info">
             <div class="grid">
                 <div class="header-info-block">
-                    <input type="text" v-model="characterSheet.data.classAndLevel" />
-                    <span>Class & Level</span>
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.species" />
+                    <span>Species</span>
                 </div>
                 <div class="header-info-block">
-                    <input type="text" v-model="characterSheet.data.background" />
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.background" />
                     <span>Background</span>
                 </div>
                 <div class="header-info-block">
-                    <input type="text" v-model="characterSheet.data.playerName" />
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.playerName" />
                     <span>Player Name</span>
                 </div>
                 <div class="header-info-block">
-                    <input type="text" v-model="characterSheet.data.race" />
-                    <span>Race</span>
+                    <CharacterSheetInputArray :character-sheet-input-array="characterSheet.data.classAndLevel" />
+                    <span>Class & Level</span>
                 </div>
                 <div class="header-info-block">
-                    <input type="text" v-model="characterSheet.data.alignment" />
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.alignment" />
                     <span>Alignment</span>
                 </div>
                 <div class="header-info-block">
-                    <input type="text" v-model="characterSheet.data.experiencePoints" />
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.experiencePoints" />
                     <span>Experience Points</span>
                 </div>
             </div>
@@ -72,10 +74,6 @@ defineProps<{
     >span {
         font-size: 14px;
         text-align: left;
-    }
-
-    input {
-        width: 95%;
     }
 }
 

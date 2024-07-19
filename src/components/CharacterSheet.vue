@@ -14,13 +14,13 @@ const emptyCharacterSheet: CharacterSheet = {
     type: CharacterSheetType.DND_5E
   },
   data: {
-    characterName: '',
-    classAndLevel: '',
-    background: '',
-    playerName: '',
-    race: '',
-    alignment: '',
-    experiencePoints: '',
+    characterName: { text: '', locked: false },
+    species: { text: '', locked: false },
+    background: { text: '', locked: false },
+    playerName: { text: '', locked: false },
+    classAndLevel: [{ text: '', locked: false }],
+    alignment: { text: '', locked: false },
+    experiencePoints: { text: '', locked: false },
   },
 }
 
@@ -68,6 +68,7 @@ function setImportedCharacterSheet(data: CharacterSheet) {
 <style lang="scss">
 body {
   place-items: baseline;
+  display: block;
 }
 
 :root {
@@ -93,10 +94,21 @@ textarea {
   &:focus-visible {
     outline-color: rgb(0 120 215);
   }
+
+  &:disabled {
+    background-color: rgb(252, 244, 230);
+  }
 }
 
-button:hover {
-  border-color: rgb(0 120 215);
+button {
+  &:hover {
+    border-color: rgb(0 120 215);
+  }
+
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 .grid {
@@ -107,6 +119,11 @@ button:hover {
 </style>
 
 <style lang="scss" scoped>
+.page {
+  max-width: 1280px;
+  width: 90vw;
+}
+
 .content {
   margin-top: 32px;
 }
