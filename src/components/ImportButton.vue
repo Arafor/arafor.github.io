@@ -82,10 +82,6 @@ async function handleFileUpload($event: Event) {
 </template>
 
 <style lang="scss" scoped>
-input[type="file"] {
-    width: 100%;
-}
-
 .import-button {
     display: inline;
 
@@ -95,10 +91,6 @@ input[type="file"] {
 }
 
 .import-block {
-    >textarea {
-        width: 100%;
-    }
-
     button {
         margin-top: 16px;
     }

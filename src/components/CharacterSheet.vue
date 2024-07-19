@@ -91,6 +91,7 @@ textarea {
   padding: 4px !important;
   padding-block: 0;
   padding-inline: 0;
+  width: calc(100% - 8px);
 
   &:focus,
   &:focus-visible {
