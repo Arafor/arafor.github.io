@@ -15,6 +15,16 @@ function exportCharacterSheet() {
 
     exportModalVisible.value = true;
 }
+
+function downloadJson() {
+    if (!props.characterSheet.data.characterName) {
+        return;
+    }
+    const element = document.createElement('a');
+    element.setAttribute('href', `data:text/json;charset=utf-8,${encodeURIComponent(outputString.value)}`);
+    element.setAttribute('download', `${props.characterSheet.data.characterName}.json`);
+    element.dispatchEvent(new MouseEvent('click'));
+}
 </script>
 
 <template>
@@ -28,6 +38,7 @@ function exportCharacterSheet() {
                 <div class="json-output">
                     {{ outputString }}
                 </div>
+                <button class="download-button" @click="downloadJson">Download</button>
             </template>
         </Modal>
     </div>
@@ -43,5 +54,9 @@ function exportCharacterSheet() {
     color: #213547;
     padding: 16px;
     word-break: break-all;
+}
+
+.download-button {
+    margin-top: 16px;
 }
 </style>
