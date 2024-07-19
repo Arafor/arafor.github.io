@@ -88,7 +88,9 @@ textarea {
   border: none;
   border-bottom: 1px solid rgb(0 0 0);
   font-size: 16px;
-  padding: 4px;
+  padding: 4px !important;
+  padding-block: 0;
+  padding-inline: 0;
 
   &:focus,
   &:focus-visible {

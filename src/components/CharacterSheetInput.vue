@@ -20,7 +20,7 @@ defineProps<{
     position: relative;
 
     >input {
-        width: 95%;
+        width: calc(100% - 8px);
     }
 
     >button {
