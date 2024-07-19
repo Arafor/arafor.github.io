@@ -23,7 +23,7 @@ function removeClass(input: InputType, index: number) {
         <div v-for="(input, index) in characterSheetInputArray" :key="index" class="input-wrapper"
             :class="{ 'margin-bottom-8': index < characterSheetInputArray.length - 1 }">
             <CharacterSheetInput :character-sheet-input="input" />
-            <button v-if="characterSheetInputArray.length > 1" title="Remove" class="remove"
+            <button v-if="characterSheetInputArray.length > 1 && !input.locked" title="Remove" class="remove"
                 @click="removeClass(input, index)">-</button>
         </div>
         <button class="add" title="Add" @click="addClass">+</button>
