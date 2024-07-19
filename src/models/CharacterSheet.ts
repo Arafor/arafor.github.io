@@ -12,12 +12,27 @@ export interface CharacterSheet {
       classAndLevel: InputType[];
       alignment: InputType;
       experiencePoints: InputType;
+      abilityScores: AbilityScoreType;
     };
   }
 
   export interface InputType {
     text:string;
     locked: boolean;
+  }
+
+  export interface AbilityScoreType {
+    strength: AbilityScoreValueType;
+    dexterity: AbilityScoreValueType;
+    constitution: AbilityScoreValueType;
+    intelligence: AbilityScoreValueType;
+    wisdom: AbilityScoreValueType;
+    charisma: AbilityScoreValueType;
+  }
+
+  export interface AbilityScoreValueType {
+    score: InputType;
+    modifier: InputType;
   }
 
   export enum CharacterSheetType {

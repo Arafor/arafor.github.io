@@ -32,7 +32,8 @@ defineProps<{
         background-color: transparent;
         opacity: 0;
         border: none;
-        top: 0;
+        top: 50%;
+        transform: translateY(-50%);
 
         &:hover {
             opacity: 1;

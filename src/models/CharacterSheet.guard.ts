@@ -2,7 +2,7 @@
  * Generated type guards for "CharacterSheet.ts".
  * WARNING: Do not manually change this file.
  */
-import { CharacterSheet, InputType, CharacterSheetType } from "./CharacterSheet";
+import { CharacterSheet, InputType, AbilityScoreType, AbilityScoreValueType, CharacterSheetType } from "./CharacterSheet";
 
 export function isCharacterSheet(obj: unknown): obj is CharacterSheet {
     const typedObj = obj as CharacterSheet
@@ -27,7 +27,8 @@ export function isCharacterSheet(obj: unknown): obj is CharacterSheet {
             isInputType(e) as boolean
         ) &&
         isInputType(typedObj["data"]["alignment"]) as boolean &&
-        isInputType(typedObj["data"]["experiencePoints"]) as boolean
+        isInputType(typedObj["data"]["experiencePoints"]) as boolean &&
+        isAbilityScoreType(typedObj["data"]["abilityScores"]) as boolean
     )
 }
 
@@ -39,6 +40,32 @@ export function isInputType(obj: unknown): obj is InputType {
             typeof typedObj === "function") &&
         typeof typedObj["text"] === "string" &&
         typeof typedObj["locked"] === "boolean"
+    )
+}
+
+export function isAbilityScoreType(obj: unknown): obj is AbilityScoreType {
+    const typedObj = obj as AbilityScoreType
+    return (
+        (typedObj !== null &&
+            typeof typedObj === "object" ||
+            typeof typedObj === "function") &&
+        isAbilityScoreValueType(typedObj["strength"]) as boolean &&
+        isAbilityScoreValueType(typedObj["dexterity"]) as boolean &&
+        isAbilityScoreValueType(typedObj["constitution"]) as boolean &&
+        isAbilityScoreValueType(typedObj["intelligence"]) as boolean &&
+        isAbilityScoreValueType(typedObj["wisdom"]) as boolean &&
+        isAbilityScoreValueType(typedObj["charisma"]) as boolean
+    )
+}
+
+export function isAbilityScoreValueType(obj: unknown): obj is AbilityScoreValueType {
+    const typedObj = obj as AbilityScoreValueType
+    return (
+        (typedObj !== null &&
+            typeof typedObj === "object" ||
+            typeof typedObj === "function") &&
+        isInputType(typedObj["score"]) as boolean &&
+        isInputType(typedObj["modifier"]) as boolean
     )
 }
 

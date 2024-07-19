@@ -9,7 +9,7 @@ defineProps<{
 </script>
 
 <template>
-    <div class="heading">
+    <div class="heading grid">
         <div class="character-name">
             <div class="header-info-block header-info-block--full">
                 <CharacterSheetInput :character-sheet-input="characterSheet.data.characterName" />
@@ -50,17 +50,20 @@ defineProps<{
 
 <style lang="scss" scoped>
 .heading {
-    display: flex;
-    justify-content: space-between;
     width: 100%;
 }
 
 .character-name {
     border: 2px solid rgb(0 0 0);
     height: fit-content;
-    margin-right: 24px;
     padding: 8px;
-    width: 33%;
+    grid-column: 1;
+}
+
+.character-header-info {
+    border: 2px solid rgb(0 0 0);
+    padding: 8px;
+    grid-column: 2/4;
 }
 
 .header-info-block {
@@ -75,11 +78,5 @@ defineProps<{
         font-size: 14px;
         text-align: left;
     }
-}
-
-.character-header-info {
-    border: 2px solid rgb(0 0 0);
-    padding: 8px;
-    width: 66%;
 }
 </style>

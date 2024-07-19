@@ -3,7 +3,7 @@ import { ref, onMounted, onBeforeMount } from 'vue'
 import { CharacterSheet, CharacterSheetType } from '../models/CharacterSheet';
 import HeadingActions from './HeadingActions.vue';
 import Heading from './Heading.vue';
-import AttributesAndSkills from './AttributesAndSkills.vue';
+import AbilityScores from './AbilityScores.vue';
 
 //TODO
 // Edit character sheet type
@@ -21,6 +21,14 @@ const emptyCharacterSheet: CharacterSheet = {
     classAndLevel: [{ text: '', locked: false }],
     alignment: { text: '', locked: false },
     experiencePoints: { text: '', locked: false },
+    abilityScores: {
+      strength: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
+      dexterity: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
+      constitution: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
+      intelligence: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
+      wisdom: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
+      charisma: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
+    },
   },
 }
 
@@ -60,7 +68,7 @@ function setImportedCharacterSheet(data: CharacterSheet) {
     <Heading :characterSheet="characterSheet" />
 
     <div class="content grid">
-      <AttributesAndSkills />
+      <AbilityScores :ability-scores="characterSheet.data.abilityScores" />
     </div>
   </div>
 </template>
