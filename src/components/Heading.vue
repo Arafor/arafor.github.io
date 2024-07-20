@@ -10,11 +10,14 @@ defineProps<{
 
 <template>
     <div class="heading grid">
-        <div class="character-name">
-            <div class="header-info-block">
-                <CharacterSheetInput :character-sheet-input="characterSheet.data.characterName" />
-                <span>Character Name</span>
+        <div class="character-info">
+            <div class="character-name">
+                <div class="header-info-block">
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.characterName" />
+                    <span>Character Name</span>
+                </div>
             </div>
+            <span>Version: {{ characterSheet.meta.version }}</span>
         </div>
 
         <div class="character-header-info">
@@ -53,11 +56,19 @@ defineProps<{
     width: 100%;
 }
 
-.character-name {
-    border: 2px solid rgb(0 0 0);
-    height: fit-content;
-    padding: 8px;
+.character-info {
     grid-column: 1;
+    text-align: left;
+
+    .character-name {
+        border: 2px solid rgb(0 0 0);
+        height: fit-content;
+        padding: 8px;
+    }
+
+    >span {
+        font-size: 12px;
+    }
 }
 
 .character-header-info {
