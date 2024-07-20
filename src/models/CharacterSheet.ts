@@ -113,6 +113,15 @@ export interface CharacterSheet {
     CHARISMA = 'charisma',
   }
 
+  export const characterSheetAbilityName = {
+    [CharacterSheetAbility.STRENGTH]: 'Strength',
+    [CharacterSheetAbility.DEXTERITY]: 'Dexterity',
+    [CharacterSheetAbility.CONSTITUTION]: 'Constitution',
+    [CharacterSheetAbility.WISDOM]: 'Wisdom',
+    [CharacterSheetAbility.INTELLIGENCE]: 'Intelligence',
+    [CharacterSheetAbility.CHARISMA]: 'Charisma',
+  }
+
   export enum CharacterSheetSkill {
     ACROBATICS = 'acrobatics',
     ANIMAL_HANDLING = 'animalHandling',
@@ -132,6 +141,27 @@ export interface CharacterSheet {
     SLEIGHT_OF_HAND = 'sleightOfHand',
     STEALTH = 'stealth',
     SURVIVAL = 'survival',
+  }
+
+  export const characterSheetSkillName = {
+    [CharacterSheetSkill.ACROBATICS]: 'Acrobatics',
+    [CharacterSheetSkill.ANIMAL_HANDLING]: 'Animal Handling',
+    [CharacterSheetSkill.ARCANA]: 'Arcana',
+    [CharacterSheetSkill.ATHLETICS]: 'Athletics',
+    [CharacterSheetSkill.DECEPTION]: 'Deception',
+    [CharacterSheetSkill.HISTORY]: 'History',
+    [CharacterSheetSkill.INSIGHT]: 'Insight',
+    [CharacterSheetSkill.INTIMIDATION]: 'Intimidation',
+    [CharacterSheetSkill.INVESTIGATION]: 'Investigation',
+    [CharacterSheetSkill.MEDICINE]: 'Medicine',
+    [CharacterSheetSkill.NATURE]: 'Nature',
+    [CharacterSheetSkill.PERCEPTION]: 'Perception',
+    [CharacterSheetSkill.PERFORMANCE]: 'Performance',
+    [CharacterSheetSkill.PERSUASION]: 'Persuasion',
+    [CharacterSheetSkill.RELIGION]: 'Religion',
+    [CharacterSheetSkill.SLEIGHT_OF_HAND]: 'Sleight of Hand',
+    [CharacterSheetSkill.STEALTH]: 'Stealth',
+    [CharacterSheetSkill.SURVIVAL]: 'Survival',
   }
 
   export const skillAbilityMap = {

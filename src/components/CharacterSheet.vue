@@ -4,12 +4,12 @@ import { CharacterSheet, CharacterSheetType, CharacterSheetAbility, CharacterShe
 import StatService from '../services/StatService';
 import HeadingActions from './HeadingActions.vue';
 import Heading from './Heading.vue';
-import AbilityScoresAndSkills from './AbilityScoresAndSkills.vue';
+import Stats from './Stats.vue';
 
 //TODO
 // Edit character sheet type
 
-const emptyCharacterSheet: CharacterSheet = {
+const emptyCharacterSheetTemplate: CharacterSheet = {
   test: '',
   meta: {
     version: '0.0.1',
@@ -84,18 +84,20 @@ const emptyCharacterSheet: CharacterSheet = {
   },
 }
 
+const emptyCharacterSheet = ref();
 const characterSheet = ref();
 const importedCharacterSheet = ref();
 
 onBeforeMount(() => {
-  characterSheet.value = JSON.parse(JSON.stringify(emptyCharacterSheet));
+  characterSheet.value = JSON.parse(JSON.stringify(emptyCharacterSheetTemplate));
   setComputedProperties();
+  emptyCharacterSheet.value = JSON.parse(JSON.stringify(characterSheet.value));
 });
 
 onMounted(() => {
   window.addEventListener('beforeunload', (event) => {
     const sheetString = JSON.stringify(characterSheet.value);
-    const emptySheetString = JSON.stringify(emptyCharacterSheet);
+    const emptySheetString = JSON.stringify(emptyCharacterSheet.value);
     const importedSheetString = JSON.stringify(importedCharacterSheet.value);
     if (sheetString === emptySheetString || sheetString === importedSheetString) {
       return;
@@ -207,7 +209,7 @@ function setComputedProperties() {
     <Heading :characterSheet="characterSheet" />
 
     <div class="content grid">
-      <AbilityScoresAndSkills :character-sheet="characterSheet" />
+      <Stats :character-sheet="characterSheet" />
     </div>
   </div>
 </template>
