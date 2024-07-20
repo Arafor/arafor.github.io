@@ -35,10 +35,10 @@ function downloadJson() {
                 Your character sheet as json
             </template>
             <template #content>
+                <button class="download-button" @click="downloadJson">Download</button>
                 <div class="json-output">
                     {{ outputString }}
                 </div>
-                <button class="download-button" @click="downloadJson">Download</button>
             </template>
         </Modal>
     </div>
@@ -57,6 +57,6 @@ function downloadJson() {
 }
 
 .download-button {
-    margin-top: 16px;
+    margin-bottom: 16px;
 }
 </style>

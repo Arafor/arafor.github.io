@@ -24,7 +24,7 @@ function closeModal() {
 <style lang="scss" scoped>
 .modal {
     background-color: rgba(0, 0, 0, .6);
-    position: absolute;
+    position: fixed;
     width: 100vw;
     height: 100vh;
     top: 0;
@@ -40,6 +40,8 @@ function closeModal() {
     padding: 16px;
     text-align: left;
     border-radius: 6px;
+    overflow-y: scroll;
+    max-height: 80vh;
 }
 
 .header {
