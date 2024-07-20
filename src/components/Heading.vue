@@ -11,7 +11,7 @@ defineProps<{
 <template>
     <div class="heading grid">
         <div class="character-name">
-            <div class="header-info-block header-info-block--full">
+            <div class="header-info-block">
                 <CharacterSheetInput :character-sheet-input="characterSheet.data.characterName" />
                 <span>Character Name</span>
             </div>
@@ -69,10 +69,6 @@ defineProps<{
 .header-info-block {
     display: flex;
     flex-direction: column;
-
-    &--full {
-        width: 100%;
-    }
 
     >span {
         font-size: 14px;

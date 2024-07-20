@@ -8,55 +8,47 @@ defineProps<{
 </script>
 
 <template>
-    <div class="grid">
-        <div class="attributes">
-            <div>
-                <span>Strength</span>
-                <CharacterSheetInput :character-sheet-input="abilityScores.strength.modifier" class="modifier" />
-                <div class="score">
-                    <CharacterSheetInput :character-sheet-input="abilityScores.strength.score" />
-                </div>
-            </div>
-            <div>
-                <span>Dexterity</span>
-                <CharacterSheetInput :character-sheet-input="abilityScores.dexterity.modifier" class="modifier" />
-                <div class="score">
-                    <CharacterSheetInput :character-sheet-input="abilityScores.dexterity.score" />
-                </div>
-            </div>
-            <div>
-                <span>Constitution</span>
-                <CharacterSheetInput :character-sheet-input="abilityScores.constitution.modifier" class="modifier" />
-                <div class="score">
-                    <CharacterSheetInput :character-sheet-input="abilityScores.constitution.score" />
-                </div>
-            </div>
-            <div>
-                <span>Wisdom</span>
-                <CharacterSheetInput :character-sheet-input="abilityScores.wisdom.modifier" class="modifier" />
-                <div class="score">
-                    <CharacterSheetInput :character-sheet-input="abilityScores.wisdom.score" />
-                </div>
-            </div>
-            <div>
-                <span>Intelligence</span>
-                <CharacterSheetInput :character-sheet-input="abilityScores.intelligence.modifier" class="modifier" />
-                <div class="score">
-                    <CharacterSheetInput :character-sheet-input="abilityScores.intelligence.score" />
-                </div>
-            </div>
-            <div>
-                <span>Charisma</span>
-                <CharacterSheetInput :character-sheet-input="abilityScores.charisma.modifier" class="modifier" />
-                <div class="score">
-                    <CharacterSheetInput :character-sheet-input="abilityScores.charisma.score" />
-                </div>
+    <div class="attributes">
+        <div>
+            <span>Strength</span>
+            <CharacterSheetInput :character-sheet-input="abilityScores.strength.modifier" class="modifier" />
+            <div class="score">
+                <CharacterSheetInput :character-sheet-input="abilityScores.strength.score" />
             </div>
         </div>
-        <div class="skills">
-            <div>
-                <input>
-                <span>Inspiration</span>
+        <div>
+            <span>Dexterity</span>
+            <CharacterSheetInput :character-sheet-input="abilityScores.dexterity.modifier" class="modifier" />
+            <div class="score">
+                <CharacterSheetInput :character-sheet-input="abilityScores.dexterity.score" />
+            </div>
+        </div>
+        <div>
+            <span>Constitution</span>
+            <CharacterSheetInput :character-sheet-input="abilityScores.constitution.modifier" class="modifier" />
+            <div class="score">
+                <CharacterSheetInput :character-sheet-input="abilityScores.constitution.score" />
+            </div>
+        </div>
+        <div>
+            <span>Wisdom</span>
+            <CharacterSheetInput :character-sheet-input="abilityScores.wisdom.modifier" class="modifier" />
+            <div class="score">
+                <CharacterSheetInput :character-sheet-input="abilityScores.wisdom.score" />
+            </div>
+        </div>
+        <div>
+            <span>Intelligence</span>
+            <CharacterSheetInput :character-sheet-input="abilityScores.intelligence.modifier" class="modifier" />
+            <div class="score">
+                <CharacterSheetInput :character-sheet-input="abilityScores.intelligence.score" />
+            </div>
+        </div>
+        <div>
+            <span>Charisma</span>
+            <CharacterSheetInput :character-sheet-input="abilityScores.charisma.modifier" class="modifier" />
+            <div class="score">
+                <CharacterSheetInput :character-sheet-input="abilityScores.charisma.score" />
             </div>
         </div>
     </div>
@@ -103,9 +95,5 @@ defineProps<{
             margin-top: -12px;
         }
     }
-}
-
-.skills {
-    grid-column: 2/4;
 }
 </style>
