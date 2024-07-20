@@ -164,7 +164,8 @@ function displayName(skill: CharacterSheetSkill) {
         padding: 4px;
         position: absolute;
         right: 0;
-        top: -24px;
+        top: -18px;
+        font-size: 12px;
     }
 
     .skill {
