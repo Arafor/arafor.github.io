@@ -1,0 +1,36 @@
+<script setup lang="ts">
+import { InputType } from '../models/CharacterSheet';
+import CharacterSheetInputArray from './CharacterSheetInputArray.vue';
+
+defineProps<{
+    other: InputType[],
+}>();
+
+</script>
+
+<template>
+    <div class="other">
+        <CharacterSheetInputArray :character-sheet-input-array="other" :min-amount="0" />
+        <span>Other Proficiencies</span>
+    </div>
+</template>
+
+<style lang="scss">
+.other .character-sheet-input-array .remove {
+    text-align: right;
+}
+</style>
+
+<style lang="scss" scoped>
+.other {
+    border: 2px solid rgb(0 0 0);
+    grid-column: 1/3;
+    padding: 8px;
+    padding-bottom: 2px;
+    margin-bottom: 16px;
+
+    >span {
+        font-size: 14px;
+    }
+}
+</style>
