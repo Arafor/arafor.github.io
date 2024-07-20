@@ -96,6 +96,7 @@ defineProps<{
 .skills {
     border: 2px solid rgb(0 0 0);
     padding: 8px;
+    padding-bottom: 2px;
     margin-bottom: 16px;
 
     .skill-score {

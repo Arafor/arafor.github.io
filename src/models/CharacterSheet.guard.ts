@@ -2,7 +2,7 @@
  * Generated type guards for "CharacterSheet.ts".
  * WARNING: Do not manually change this file.
  */
-import { CharacterSheet, InputType, InputTypeWithProficiency, AbilityScoreType, AbilityScoreValueType, SkillsType, SavingThrowsType, PassiveSkillsType, CharacterSheetType, CharacterSheetAbility, CharacterSheetSkill } from "./CharacterSheet";
+import { CharacterSheet, InputType, InputTypeWithProficiency, AbilityScoreType, AbilityScoreValueType, SkillsType, SavingThrowsType, PassiveSkillsType, CharacterSheetType, CharacterSheetAbility, CharacterSheetSkill, WeaponAttackType } from "./CharacterSheet";
 
 export function isCharacterSheet(obj: unknown): obj is CharacterSheet {
     const typedObj = obj as CharacterSheet
@@ -29,11 +29,75 @@ export function isCharacterSheet(obj: unknown): obj is CharacterSheet {
         isInputType(typedObj["data"]["alignment"]) as boolean &&
         isInputType(typedObj["data"]["experiencePoints"]) as boolean &&
         isAbilityScoreType(typedObj["data"]["abilityScores"]) as boolean &&
-        isSkillsType(typedObj["data"]["skills"]) as boolean &&
         isSavingThrowsType(typedObj["data"]["savingThrows"]) as boolean &&
+        isSkillsType(typedObj["data"]["skills"]) as boolean &&
+        isPassiveSkillsType(typedObj["data"]["passiveSkills"]) as boolean &&
         isInputType(typedObj["data"]["inspiration"]) as boolean &&
         isInputType(typedObj["data"]["proficiencyBonus"]) as boolean &&
-        isPassiveSkillsType(typedObj["data"]["passiveSkills"]) as boolean
+        isInputType(typedObj["data"]["armorClass"]) as boolean &&
+        isInputType(typedObj["data"]["initiative"]) as boolean &&
+        isInputType(typedObj["data"]["speed"]) as boolean &&
+        (typedObj["data"]["hitPoints"] !== null &&
+            typeof typedObj["data"]["hitPoints"] === "object" ||
+            typeof typedObj["data"]["hitPoints"] === "function") &&
+        isInputType(typedObj["data"]["hitPoints"]["maximum"]) as boolean &&
+        isInputType(typedObj["data"]["hitPoints"]["current"]) as boolean &&
+        isInputType(typedObj["data"]["hitPoints"]["temporary"]) as boolean &&
+        (typedObj["data"]["hitDice"] !== null &&
+            typeof typedObj["data"]["hitDice"] === "object" ||
+            typeof typedObj["data"]["hitDice"] === "function") &&
+        isInputType(typedObj["data"]["hitDice"]["total"]) as boolean &&
+        isInputType(typedObj["data"]["hitDice"]["current"]) as boolean &&
+        (typedObj["data"]["deathSaves"] !== null &&
+            typeof typedObj["data"]["deathSaves"] === "object" ||
+            typeof typedObj["data"]["deathSaves"] === "function") &&
+        (typedObj["data"]["deathSaves"]["success"] !== null &&
+            typeof typedObj["data"]["deathSaves"]["success"] === "object" ||
+            typeof typedObj["data"]["deathSaves"]["success"] === "function") &&
+        isInputType(typedObj["data"]["deathSaves"]["success"]["first"]) as boolean &&
+        isInputType(typedObj["data"]["deathSaves"]["success"]["second"]) as boolean &&
+        isInputType(typedObj["data"]["deathSaves"]["success"]["third"]) as boolean &&
+        (typedObj["data"]["deathSaves"]["fail"] !== null &&
+            typeof typedObj["data"]["deathSaves"]["fail"] === "object" ||
+            typeof typedObj["data"]["deathSaves"]["fail"] === "function") &&
+        isInputType(typedObj["data"]["deathSaves"]["fail"]["first"]) as boolean &&
+        isInputType(typedObj["data"]["deathSaves"]["fail"]["second"]) as boolean &&
+        isInputType(typedObj["data"]["deathSaves"]["fail"]["third"]) as boolean &&
+        Array.isArray(typedObj["data"]["attacks"]) &&
+        typedObj["data"]["attacks"].every((e: any) =>
+            isWeaponAttackType(e) as boolean
+        ) &&
+        (typedObj["data"]["otherProficiencies"] !== null &&
+            typeof typedObj["data"]["otherProficiencies"] === "object" ||
+            typeof typedObj["data"]["otherProficiencies"] === "function") &&
+        Array.isArray(typedObj["data"]["otherProficiencies"]["languages"]) &&
+        typedObj["data"]["otherProficiencies"]["languages"].every((e: any) =>
+            isInputType(e) as boolean
+        ) &&
+        Array.isArray(typedObj["data"]["otherProficiencies"]["weapons"]) &&
+        typedObj["data"]["otherProficiencies"]["weapons"].every((e: any) =>
+            isInputType(e) as boolean
+        ) &&
+        Array.isArray(typedObj["data"]["otherProficiencies"]["armor"]) &&
+        typedObj["data"]["otherProficiencies"]["armor"].every((e: any) =>
+            isInputType(e) as boolean
+        ) &&
+        Array.isArray(typedObj["data"]["otherProficiencies"]["tools"]) &&
+        typedObj["data"]["otherProficiencies"]["tools"].every((e: any) =>
+            isInputType(e) as boolean
+        ) &&
+        Array.isArray(typedObj["data"]["otherProficiencies"]["other"]) &&
+        typedObj["data"]["otherProficiencies"]["other"].every((e: any) =>
+            isInputType(e) as boolean
+        ) &&
+        Array.isArray(typedObj["data"]["features"]) &&
+        typedObj["data"]["features"].every((e: any) =>
+            isInputType(e) as boolean
+        ) &&
+        Array.isArray(typedObj["data"]["traits"]) &&
+        typedObj["data"]["traits"].every((e: any) =>
+            isInputType(e) as boolean
+        )
     )
 }
 
@@ -199,5 +263,17 @@ export function isCharacterSheetSkill(obj: unknown): obj is CharacterSheetSkill 
             typedObj === CharacterSheetSkill.SLEIGHT_OF_HAND ||
             typedObj === CharacterSheetSkill.STEALTH ||
             typedObj === CharacterSheetSkill.SURVIVAL)
+    )
+}
+
+export function isWeaponAttackType(obj: unknown): obj is WeaponAttackType {
+    const typedObj = obj as WeaponAttackType
+    return (
+        (typedObj !== null &&
+            typeof typedObj === "object" ||
+            typeof typedObj === "function") &&
+        isInputType(typedObj["name"]) as boolean &&
+        isInputType(typedObj["attackBonus"]) as boolean &&
+        isInputType(typedObj["damage"]) as boolean
     )
 }

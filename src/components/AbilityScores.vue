@@ -75,7 +75,7 @@ defineProps<{
 .attributes {
     >div {
         border: 2px solid rgb(0 0 0);
-        padding: 8px 8px 0;
+        padding: 2px 8px 0;
         margin-top: 32px;
 
         &:first-child {

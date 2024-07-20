@@ -47,6 +47,7 @@ defineProps<{
 .saving-throws {
     border: 2px solid rgb(0 0 0);
     padding: 8px;
+    padding-bottom: 2px;
     margin-bottom: 16px;
 
     .ability-score {

@@ -14,11 +14,45 @@ export interface CharacterSheet {
       alignment: InputType;
       experiencePoints: InputType;
       abilityScores: AbilityScoreType;
-      skills: SkillsType;
       savingThrows: SavingThrowsType;
+      skills: SkillsType;
+      passiveSkills: PassiveSkillsType;
       inspiration: InputType;
       proficiencyBonus: InputType;
-      passiveSkills: PassiveSkillsType;
+      armorClass: InputType;
+      initiative: InputType;
+      speed: InputType;
+      hitPoints: {
+        maximum: InputType;
+        current: InputType;
+        temporary: InputType;
+      };
+      hitDice: {
+        total: InputType;
+        current: InputType;
+      };
+      deathSaves: {
+        success: {
+          first: InputType;
+          second: InputType;
+          third: InputType;
+        };
+        fail: {
+          first: InputType;
+          second: InputType;
+          third: InputType;
+        };
+      };
+      attacks: WeaponAttackType[];
+      otherProficiencies: {
+        languages: InputType[];
+        weapons: InputType[];
+        armor: InputType[];
+        tools: InputType[];
+        other: InputType[];
+      };
+      features: InputType[];
+      traits: InputType[];
     };
   }
 
@@ -183,4 +217,11 @@ export interface CharacterSheet {
     [CharacterSheetSkill.SLEIGHT_OF_HAND]: CharacterSheetAbility.DEXTERITY,
     [CharacterSheetSkill.STEALTH]: CharacterSheetAbility.DEXTERITY,
     [CharacterSheetSkill.SURVIVAL]: CharacterSheetAbility.WISDOM,
+  }
+
+  export interface WeaponAttackType
+  {
+    name: InputType;
+    attackBonus: InputType;
+    damage: InputType;
   }

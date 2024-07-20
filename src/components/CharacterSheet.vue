@@ -5,6 +5,8 @@ import StatService from '../services/StatService';
 import HeadingActions from './HeadingActions.vue';
 import Heading from './Heading.vue';
 import Stats from './Stats.vue';
+import HealthAndAttack from './HealthAndAttack.vue';
+import FeaturesAndProficiencies from './FeaturesAndProficiencies.vue';
 
 //TODO
 // Edit character sheet type
@@ -31,6 +33,14 @@ const emptyCharacterSheetTemplate: CharacterSheet = {
       wisdom: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
       charisma: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
     },
+    savingThrows: {
+      strength: { proficient: false, text: '', locked: false },
+      dexterity: { proficient: false, text: '', locked: false },
+      constitution: { proficient: false, text: '', locked: false },
+      intelligence: { proficient: false, text: '', locked: false },
+      wisdom: { proficient: false, text: '', locked: false },
+      charisma: { proficient: false, text: '', locked: false },
+    },
     skills: {
       acrobatics: { proficient: false, text: '', locked: false },
       animalHandling: { proficient: false, text: '', locked: false },
@@ -51,16 +61,6 @@ const emptyCharacterSheetTemplate: CharacterSheet = {
       stealth: { proficient: false, text: '', locked: false },
       survival: { proficient: false, text: '', locked: false },
     },
-    savingThrows: {
-      strength: { proficient: false, text: '', locked: false },
-      dexterity: { proficient: false, text: '', locked: false },
-      constitution: { proficient: false, text: '', locked: false },
-      intelligence: { proficient: false, text: '', locked: false },
-      wisdom: { proficient: false, text: '', locked: false },
-      charisma: { proficient: false, text: '', locked: false },
-    },
-    inspiration: { text: '', locked: false },
-    proficiencyBonus: { text: '', locked: false },
     passiveSkills: {
       acrobatics: { text: '', locked: false },
       animalHandling: { text: '', locked: false },
@@ -81,6 +81,42 @@ const emptyCharacterSheetTemplate: CharacterSheet = {
       stealth: { text: '', locked: false },
       survival: { text: '', locked: false },
     },
+    inspiration: { text: '', locked: false },
+    proficiencyBonus: { text: '', locked: false },
+    armorClass: { text: '', locked: false },
+    initiative: { text: '', locked: false },
+    speed: { text: '', locked: false },
+    hitPoints: {
+      maximum: { text: '', locked: false },
+      current: { text: '', locked: false },
+      temporary: { text: '', locked: false },
+    },
+    hitDice: {
+      total: { text: '', locked: false },
+      current: { text: '', locked: false },
+    },
+    deathSaves: {
+      success: {
+        first: { text: '', locked: false },
+        second: { text: '', locked: false },
+        third: { text: '', locked: false },
+      },
+      fail: {
+        first: { text: '', locked: false },
+        second: { text: '', locked: false },
+        third: { text: '', locked: false },
+      },
+    },
+    attacks: [],
+    otherProficiencies: {
+      languages: [],
+      weapons: [],
+      armor: [],
+      tools: [],
+      other: [],
+    },
+    features: [],
+    traits: [],
   },
 }
 
@@ -125,6 +161,14 @@ function setComputedProperties() {
   characterSheet.value.data.proficiencyBonus.placeholder = '+2';
   characterSheet.value.data.proficiencyBonus.value = computed(() => {
     return characterSheet.value.data.proficiencyBonus.text || characterSheet.value.data.proficiencyBonus.placeholder;
+  });
+
+  // Initiative
+  characterSheet.value.data.initiative.placeholder = computed(() => {
+    return characterSheet.value.data.abilityScores.dexterity.modifier.value;
+  });
+  characterSheet.value.data.initiative.value = computed(() => {
+    return characterSheet.value.data.initiative.text || characterSheet.value.data.initiative.placeholder;
   });
 
   // All Abilities
@@ -210,6 +254,8 @@ function setComputedProperties() {
 
     <div class="content grid">
       <Stats :character-sheet="characterSheet" />
+      <HealthAndAttack :character-sheet="characterSheet" />
+      <FeaturesAndProficiencies :character-sheet="characterSheet" />
     </div>
   </div>
 </template>
