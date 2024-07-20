@@ -97,14 +97,14 @@ const emptyCharacterSheetTemplate: CharacterSheet = {
     },
     deathSaves: {
       success: {
-        first: { text: '', locked: false },
-        second: { text: '', locked: false },
-        third: { text: '', locked: false },
+        first: { checked: false },
+        second: { checked: false },
+        third: { checked: false },
       },
       fail: {
-        first: { text: '', locked: false },
-        second: { text: '', locked: false },
-        third: { text: '', locked: false },
+        first: { checked: false },
+        second: { checked: false },
+        third: { checked: false },
       },
     },
     attacks: [],

@@ -33,14 +33,14 @@ export interface CharacterSheet {
       };
       deathSaves: {
         success: {
-          first: InputType;
-          second: InputType;
-          third: InputType;
+          first: CheckboxType;
+          second: CheckboxType;
+          third: CheckboxType;
         };
         fail: {
-          first: InputType;
-          second: InputType;
-          third: InputType;
+          first: CheckboxType;
+          second: CheckboxType;
+          third: CheckboxType;
         };
       };
       attacks: WeaponAttackType[];
@@ -57,15 +57,19 @@ export interface CharacterSheet {
   }
 
   export interface InputType {
-    text:string;
+    text: string;
     locked: boolean;
     proficient?: boolean;
-    placeholder?: string;//TODO
-    value?: string;//TODO
+    placeholder?: string; // Used for auto calculated values; Shown as placeholders
+    value?: string; // Used to get the text value or use placeholder as fallback
   }
 
   export interface InputTypeWithProficiency extends InputType {
     proficient: boolean;
+  }
+
+  export interface CheckboxType {
+    checked: boolean;
   }
 
   export interface AbilityScoreType {

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { CharacterSheet } from '../models/CharacterSheet';
 import CharacterSheetInput from './CharacterSheetInput.vue';
+import CharacterSheetCheckbox from './CharacterSheetCheckbox.vue';
 
 defineProps<{
     characterSheet: CharacterSheet,
@@ -49,11 +50,23 @@ defineProps<{
                 <span>Hit Dice</span>
             </div>
             <div class="death-saves">
-                <div>
+                <div class="success">
                     <span>Successes</span>
+                    <CharacterSheetCheckbox class="first"
+                        :character-sheet-checkbox="characterSheet.data.deathSaves.success.first" />
+                    <CharacterSheetCheckbox class="second"
+                        :character-sheet-checkbox="characterSheet.data.deathSaves.success.second" />
+                    <CharacterSheetCheckbox class="third"
+                        :character-sheet-checkbox="characterSheet.data.deathSaves.success.third" />
                 </div>
-                <div>
+                <div class="fail">
                     <span>Failures</span>
+                    <CharacterSheetCheckbox class="first"
+                        :character-sheet-checkbox="characterSheet.data.deathSaves.fail.first" />
+                    <CharacterSheetCheckbox class="second"
+                        :character-sheet-checkbox="characterSheet.data.deathSaves.fail.second" />
+                    <CharacterSheetCheckbox class="third"
+                        :character-sheet-checkbox="characterSheet.data.deathSaves.fail.third" />
                 </div>
                 <span>Hit Dice</span>
             </div>
@@ -138,8 +151,36 @@ defineProps<{
 
     .death-saves {
         grid-column: 7/13;
+
+        >span {
+            display: block;
+            margin-top: 14px;
+        }
+
+        .success,
+        .fail {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 0;
+            margin-bottom: 0;
+
+            span {
+                grid-column: 1/7;
+                text-align: right;
+            }
+
+            .first {
+                grid-column: 7/9;
+            }
+
+            .second {
+                grid-column: 9/11;
+            }
+
+            .third {
+                grid-column: 11/13;
+            }
+        }
     }
-
-
 }
 </style>

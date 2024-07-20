@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { CharacterSheet } from '../models/CharacterSheet';
-import CharacterSheetInput from './CharacterSheetInput.vue';
+import CharacterSheetInputArray from './CharacterSheetInputArray.vue';
 
 defineProps<{
     characterSheet: CharacterSheet,
@@ -9,5 +9,7 @@ defineProps<{
 </script>
 
 <template>
-    <div></div>
+    <div>
+        <CharacterSheetInputArray :character-sheet-input-array="characterSheet.data.features" />
+    </div>
 </template>

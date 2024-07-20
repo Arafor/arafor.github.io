@@ -2,7 +2,7 @@
  * Generated type guards for "CharacterSheet.ts".
  * WARNING: Do not manually change this file.
  */
-import { CharacterSheet, InputType, InputTypeWithProficiency, AbilityScoreType, AbilityScoreValueType, SkillsType, SavingThrowsType, PassiveSkillsType, CharacterSheetType, CharacterSheetAbility, CharacterSheetSkill, WeaponAttackType } from "./CharacterSheet";
+import { CharacterSheet, InputType, InputTypeWithProficiency, CheckboxType, AbilityScoreType, AbilityScoreValueType, SkillsType, SavingThrowsType, PassiveSkillsType, CharacterSheetType, CharacterSheetAbility, CharacterSheetSkill, WeaponAttackType } from "./CharacterSheet";
 
 export function isCharacterSheet(obj: unknown): obj is CharacterSheet {
     const typedObj = obj as CharacterSheet
@@ -54,15 +54,15 @@ export function isCharacterSheet(obj: unknown): obj is CharacterSheet {
         (typedObj["data"]["deathSaves"]["success"] !== null &&
             typeof typedObj["data"]["deathSaves"]["success"] === "object" ||
             typeof typedObj["data"]["deathSaves"]["success"] === "function") &&
-        isInputType(typedObj["data"]["deathSaves"]["success"]["first"]) as boolean &&
-        isInputType(typedObj["data"]["deathSaves"]["success"]["second"]) as boolean &&
-        isInputType(typedObj["data"]["deathSaves"]["success"]["third"]) as boolean &&
+        isCheckboxType(typedObj["data"]["deathSaves"]["success"]["first"]) as boolean &&
+        isCheckboxType(typedObj["data"]["deathSaves"]["success"]["second"]) as boolean &&
+        isCheckboxType(typedObj["data"]["deathSaves"]["success"]["third"]) as boolean &&
         (typedObj["data"]["deathSaves"]["fail"] !== null &&
             typeof typedObj["data"]["deathSaves"]["fail"] === "object" ||
             typeof typedObj["data"]["deathSaves"]["fail"] === "function") &&
-        isInputType(typedObj["data"]["deathSaves"]["fail"]["first"]) as boolean &&
-        isInputType(typedObj["data"]["deathSaves"]["fail"]["second"]) as boolean &&
-        isInputType(typedObj["data"]["deathSaves"]["fail"]["third"]) as boolean &&
+        isCheckboxType(typedObj["data"]["deathSaves"]["fail"]["first"]) as boolean &&
+        isCheckboxType(typedObj["data"]["deathSaves"]["fail"]["second"]) as boolean &&
+        isCheckboxType(typedObj["data"]["deathSaves"]["fail"]["third"]) as boolean &&
         Array.isArray(typedObj["data"]["attacks"]) &&
         typedObj["data"]["attacks"].every((e: any) =>
             isWeaponAttackType(e) as boolean
@@ -124,6 +124,16 @@ export function isInputTypeWithProficiency(obj: unknown): obj is InputTypeWithPr
     return (
         isInputType(typedObj) as boolean &&
         typeof typedObj["proficient"] === "boolean"
+    )
+}
+
+export function isCheckboxType(obj: unknown): obj is CheckboxType {
+    const typedObj = obj as CheckboxType
+    return (
+        (typedObj !== null &&
+            typeof typedObj === "object" ||
+            typeof typedObj === "function") &&
+        typeof typedObj["checked"] === "boolean"
     )
 }
 
