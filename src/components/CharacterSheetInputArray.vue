@@ -1,23 +1,32 @@
 <script setup lang="ts">
 import { InputType } from '../models/CharacterSheet'
+import EmptyCharacterSheetFactory from '../services/EmptyCharacterSheetFactory'
 import CharacterSheetInput from './CharacterSheetInput.vue';
 
 const props = withDefaults(
     defineProps<{
         characterSheetInputArray: InputType[],
         minAmount?: number,
+        withProficiency?: boolean,
     }>(),
     {
         minAmount: 1,
     }
 );
 
-function addClass() {
-    const newClass: InputType = { text: '', locked: false };
-    props.characterSheetInputArray.push(newClass);
+function addToList() {
+    if (props.withProficiency) {
+        const newEntry: InputType = EmptyCharacterSheetFactory.getInputTypeWithProficiency();
+        props.characterSheetInputArray.push(newEntry);
+
+        return;
+    }
+
+    const newEntry: InputType = EmptyCharacterSheetFactory.getInputType();
+    props.characterSheetInputArray.push(newEntry);
 }
 
-function removeClass(input: InputType, index: number) {
+function removeFromList(input: InputType, index: number) {
     if (!input.text || confirm(`Are you sure you want to remove "${input.text}"?`)) {
         props.characterSheetInputArray.splice(index, 1);
     }
@@ -30,9 +39,9 @@ function removeClass(input: InputType, index: number) {
             :class="{ 'margin-bottom-8': index < characterSheetInputArray.length - 1 }">
             <CharacterSheetInput :character-sheet-input="input" />
             <button v-if="characterSheetInputArray.length > minAmount && !input.locked" title="Remove" class="remove"
-                @click="removeClass(input, index)">-</button>
+                @click="removeFromList(input, index)">-</button>
         </div>
-        <button class="add" title="Add" @click="addClass">+</button>
+        <button class="add" title="Add" @click="addToList">+</button>
     </div>
 </template>
 

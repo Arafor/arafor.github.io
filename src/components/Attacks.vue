@@ -100,6 +100,7 @@ function removeAttack(attack: WeaponAttackType, index: number) {
         &.under-text {
             span {
                 grid-column: 2/12;
+                font-size: 14px;
             }
 
             button {

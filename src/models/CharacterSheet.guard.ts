@@ -2,7 +2,7 @@
  * Generated type guards for "CharacterSheet.ts".
  * WARNING: Do not manually change this file.
  */
-import { CharacterSheet, InputType, InputTypeWithProficiency, CheckboxType, AbilityScoreType, AbilityScoreValueType, SkillsType, SavingThrowsType, PassiveSkillsType, CharacterSheetType, CharacterSheetAbility, CharacterSheetSkill, WeaponAttackType } from "./CharacterSheet";
+import { CharacterSheet, InputType, InputTypeWithProficiency, TextAreaType, CheckboxType, AbilityScoreType, AbilityScoreValueType, SkillsType, SavingThrowsType, PassiveSkillsType, CharacterSheetType, CharacterSheetAbility, CharacterSheetSkill, WeaponAttackType, CantripList, SpellList } from "./CharacterSheet";
 
 export function isCharacterSheet(obj: unknown): obj is CharacterSheet {
     const typedObj = obj as CharacterSheet
@@ -97,7 +97,56 @@ export function isCharacterSheet(obj: unknown): obj is CharacterSheet {
         Array.isArray(typedObj["data"]["traits"]) &&
         typedObj["data"]["traits"].every((e: any) =>
             isInputType(e) as boolean
-        )
+        ) &&
+        isInputType(typedObj["data"]["spellCastingAbility"]) as boolean &&
+        isInputType(typedObj["data"]["spellSaveDc"]) as boolean &&
+        isInputType(typedObj["data"]["spellAttackBonus"]) as boolean &&
+        (typedObj["data"]["spells"] !== null &&
+            typeof typedObj["data"]["spells"] === "object" ||
+            typeof typedObj["data"]["spells"] === "function") &&
+        isCantripList(typedObj["data"]["spells"]["cantrips"]) as boolean &&
+        isSpellList(typedObj["data"]["spells"]["first"]) as boolean &&
+        isSpellList(typedObj["data"]["spells"]["second"]) as boolean &&
+        isSpellList(typedObj["data"]["spells"]["third"]) as boolean &&
+        isSpellList(typedObj["data"]["spells"]["fourth"]) as boolean &&
+        isSpellList(typedObj["data"]["spells"]["fifth"]) as boolean &&
+        isSpellList(typedObj["data"]["spells"]["sixth"]) as boolean &&
+        isSpellList(typedObj["data"]["spells"]["seventh"]) as boolean &&
+        isSpellList(typedObj["data"]["spells"]["eighth"]) as boolean &&
+        isSpellList(typedObj["data"]["spells"]["ninth"]) as boolean &&
+        (typedObj["data"]["money"] !== null &&
+            typeof typedObj["data"]["money"] === "object" ||
+            typeof typedObj["data"]["money"] === "function") &&
+        isInputType(typedObj["data"]["money"]["copper"]) as boolean &&
+        isInputType(typedObj["data"]["money"]["silver"]) as boolean &&
+        isInputType(typedObj["data"]["money"]["electrum"]) as boolean &&
+        isInputType(typedObj["data"]["money"]["gold"]) as boolean &&
+        isInputType(typedObj["data"]["money"]["platinum"]) as boolean &&
+        Array.isArray(typedObj["data"]["equipment"]) &&
+        typedObj["data"]["equipment"].every((e: any) =>
+            isInputType(e) as boolean
+        ) &&
+        Array.isArray(typedObj["data"]["consumables"]) &&
+        typedObj["data"]["consumables"].every((e: any) =>
+            isInputType(e) as boolean
+        ) &&
+        Array.isArray(typedObj["data"]["treasure"]) &&
+        typedObj["data"]["treasure"].every((e: any) =>
+            isInputType(e) as boolean
+        ) &&
+        isInputType(typedObj["data"]["age"]) as boolean &&
+        isInputType(typedObj["data"]["height"]) as boolean &&
+        isInputType(typedObj["data"]["weight"]) as boolean &&
+        isInputType(typedObj["data"]["eyes"]) as boolean &&
+        isInputType(typedObj["data"]["skin"]) as boolean &&
+        isInputType(typedObj["data"]["hair"]) as boolean &&
+        isTextAreaType(typedObj["data"]["personalityTraits"]) as boolean &&
+        isTextAreaType(typedObj["data"]["ideals"]) as boolean &&
+        isTextAreaType(typedObj["data"]["bonds"]) as boolean &&
+        isTextAreaType(typedObj["data"]["flaws"]) as boolean &&
+        isTextAreaType(typedObj["data"]["backstory"]) as boolean &&
+        isTextAreaType(typedObj["data"]["appearance"]) as boolean &&
+        isTextAreaType(typedObj["data"]["allies"]) as boolean
     )
 }
 
@@ -124,6 +173,19 @@ export function isInputTypeWithProficiency(obj: unknown): obj is InputTypeWithPr
     return (
         isInputType(typedObj) as boolean &&
         typeof typedObj["proficient"] === "boolean"
+    )
+}
+
+export function isTextAreaType(obj: unknown): obj is TextAreaType {
+    const typedObj = obj as TextAreaType
+    return (
+        (typedObj !== null &&
+            typeof typedObj === "object" ||
+            typeof typedObj === "function") &&
+        typeof typedObj["text"] === "string" &&
+        (typeof typedObj["locked"] === "undefined" ||
+            typedObj["locked"] === false ||
+            typedObj["locked"] === true)
     )
 }
 
@@ -285,5 +347,36 @@ export function isWeaponAttackType(obj: unknown): obj is WeaponAttackType {
         isInputType(typedObj["name"]) as boolean &&
         isInputType(typedObj["attackBonus"]) as boolean &&
         isInputType(typedObj["damage"]) as boolean
+    )
+}
+
+export function isCantripList(obj: unknown): obj is CantripList {
+    const typedObj = obj as CantripList
+    return (
+        (typedObj !== null &&
+            typeof typedObj === "object" ||
+            typeof typedObj === "function") &&
+        Array.isArray(typedObj["list"]) &&
+        typedObj["list"].every((e: any) =>
+            isInputType(e) as boolean
+        )
+    )
+}
+
+export function isSpellList(obj: unknown): obj is SpellList {
+    const typedObj = obj as SpellList
+    return (
+        (typedObj !== null &&
+            typeof typedObj === "object" ||
+            typeof typedObj === "function") &&
+        Array.isArray(typedObj["list"]) &&
+        typedObj["list"].every((e: any) =>
+            isInputTypeWithProficiency(e) as boolean
+        ) &&
+        (typedObj["spellSlots"] !== null &&
+            typeof typedObj["spellSlots"] === "object" ||
+            typeof typedObj["spellSlots"] === "function") &&
+        isInputType(typedObj["spellSlots"]["total"]) as boolean &&
+        isInputType(typedObj["spellSlots"]["used"]) as boolean
     )
 }

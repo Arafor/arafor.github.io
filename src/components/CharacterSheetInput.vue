@@ -29,7 +29,8 @@ defineProps<{
 
         input[type="checkbox"] {
             height: fit-content;
-            margin: auto 0;
+            margin: auto 8px auto 0;
+            width: auto;
         }
 
         input[type="text"] {

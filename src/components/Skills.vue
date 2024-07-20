@@ -122,6 +122,7 @@ defineProps<{
     >span {
         margin-top: 8px;
         display: inline-block;
+        font-size: 14px;
     }
 }
 </style>

@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { CharacterSheet } from '../models/CharacterSheet';
+import { CharacterSheetTabs } from '../models/CharacterSheetTabs';
 import CharacterSheetInput from './CharacterSheetInput.vue';
 import CharacterSheetInputArray from './CharacterSheetInputArray.vue';
 
 defineProps<{
     characterSheet: CharacterSheet,
+    activeTab: CharacterSheetTabs,
 }>();
 </script>
 
@@ -21,7 +23,7 @@ defineProps<{
         </div>
 
         <div class="character-header-info">
-            <div class="grid">
+            <div v-if="activeTab === CharacterSheetTabs.STATS" class="grid">
                 <div class="header-info-block">
                     <CharacterSheetInput :character-sheet-input="characterSheet.data.species" />
                     <span>Species</span>
@@ -45,6 +47,71 @@ defineProps<{
                 <div class="header-info-block">
                     <CharacterSheetInput :character-sheet-input="characterSheet.data.experiencePoints" />
                     <span>Experience Points</span>
+                </div>
+            </div>
+
+            <div v-if="activeTab === CharacterSheetTabs.SPELLS" class="grid">
+                <div class="header-info-block">
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.spellCastingAbility" />
+                    <span>Spell Casting Ability</span>
+                </div>
+                <div class="header-info-block">
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.spellSaveDc" />
+                    <span>Spell Save DC</span>
+                </div>
+                <div class="header-info-block">
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.spellAttackBonus" />
+                    <span>Spell Attack Bonus</span>
+                </div>
+            </div>
+
+            <div v-if="activeTab === CharacterSheetTabs.EQUIPMENT" class="grid">
+                <div class="header-info-block">
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.money.copper" />
+                    <span>Copper Pieces</span>
+                </div>
+                <div class="header-info-block">
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.money.silver" />
+                    <span>Silver Pieces</span>
+                </div>
+                <div class="header-info-block">
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.money.electrum" />
+                    <span>Electrum Pieces</span>
+                </div>
+                <div class="header-info-block">
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.money.gold" />
+                    <span>Gold Pieces</span>
+                </div>
+                <div class="header-info-block">
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.money.platinum" />
+                    <span>Platinum</span>
+                </div>
+            </div>
+
+            <div v-if="activeTab === CharacterSheetTabs.CHARACTER" class="grid">
+                <div class="header-info-block">
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.age" />
+                    <span>Age</span>
+                </div>
+                <div class="header-info-block">
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.height" />
+                    <span>Height</span>
+                </div>
+                <div class="header-info-block">
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.weight" />
+                    <span>Weight</span>
+                </div>
+                <div class="header-info-block">
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.eyes" />
+                    <span>Eyes</span>
+                </div>
+                <div class="header-info-block">
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.skin" />
+                    <span>Skin</span>
+                </div>
+                <div class="header-info-block">
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.hair" />
+                    <span>Hair</span>
                 </div>
             </div>
         </div>

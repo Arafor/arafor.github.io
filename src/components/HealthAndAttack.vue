@@ -69,7 +69,7 @@ defineProps<{
                     <CharacterSheetCheckbox class="third"
                         :character-sheet-checkbox="characterSheet.data.deathSaves.fail.third" />
                 </div>
-                <span>Hit Dice</span>
+                <span>Death Saves</span>
             </div>
         </div>
 
@@ -92,6 +92,10 @@ defineProps<{
         border: 2px solid rgb(0 0 0);
         padding: 8px;
         padding-bottom: 2px;
+
+        >span {
+            font-size: 14px;
+        }
     }
 }
 
@@ -117,6 +121,10 @@ defineProps<{
             grid-column: 6/13;
         }
     }
+
+    >span {
+        font-size: 14px;
+    }
 }
 
 .hit-dice-and-death-saves {
@@ -130,6 +138,10 @@ defineProps<{
         border: 2px solid rgb(0 0 0);
         padding: 8px;
         padding-bottom: 2px;
+
+        >span {
+            font-size: 14px;
+        }
     }
 
     .hit-dice {

@@ -11,6 +11,8 @@ import Stats from './Stats.vue';
 import HealthAndAttack from './HealthAndAttack.vue';
 import FeaturesAndProficiencies from './FeaturesAndProficiencies.vue';
 import Spells from './Spells.vue';
+import Equipment from './Equipment.vue';
+import CharacterInfo from './CharacterInfo.vue';
 
 //TODO
 // Edit character sheet type
@@ -152,7 +154,7 @@ function changeTab(tab: CharacterSheetTabs) {
   <div class="page">
     <HeadingActions :characterSheet="characterSheet" @imported="setImportedCharacterSheet" />
 
-    <Heading :characterSheet="characterSheet" />
+    <Heading :characterSheet="characterSheet" :activeTab="activeTab" />
 
     <CharacterSheetTabBar :activeTab="activeTab" @changeTab="changeTab" />
 
@@ -163,7 +165,15 @@ function changeTab(tab: CharacterSheetTabs) {
     </div>
 
     <div v-if="activeTab === CharacterSheetTabs.SPELLS" class="content">
-      <Spells />
+      <Spells :character-sheet="characterSheet" />
+    </div>
+
+    <div v-if="activeTab === CharacterSheetTabs.EQUIPMENT" class="content">
+      <Equipment :character-sheet="characterSheet" />
+    </div>
+
+    <div v-if="activeTab === CharacterSheetTabs.CHARACTER" class="content">
+      <CharacterInfo :character-sheet="characterSheet" />
     </div>
   </div>
 </template>
