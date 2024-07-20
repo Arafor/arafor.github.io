@@ -1,6 +1,5 @@
 /** @see {isCharacterSheet} ts-auto-guard:type-guard */
 export interface CharacterSheet {
-  test?: any,
     meta: {
       version: string;
       type: CharacterSheetType;

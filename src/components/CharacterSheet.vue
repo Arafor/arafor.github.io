@@ -1,128 +1,26 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeMount, computed } from 'vue';
-import { CharacterSheet, CharacterSheetType, CharacterSheetAbility, CharacterSheetSkill, skillAbilityMap } from '../models/CharacterSheet';
+import { CharacterSheet, CharacterSheetAbility, CharacterSheetSkill, skillAbilityMap } from '../models/CharacterSheet';
+import { CharacterSheetTabs } from '../models/CharacterSheetTabs';
+import EmptyCharacterSheetFactory from '../services/EmptyCharacterSheetFactory';
 import StatService from '../services/StatService';
 import HeadingActions from './HeadingActions.vue';
 import Heading from './Heading.vue';
+import CharacterSheetTabBar from './CharacterSheetTabBar.vue';
 import Stats from './Stats.vue';
 import HealthAndAttack from './HealthAndAttack.vue';
 import FeaturesAndProficiencies from './FeaturesAndProficiencies.vue';
+import Spells from './Spells.vue';
 
 //TODO
 // Edit character sheet type
 
-const emptyCharacterSheetTemplate: CharacterSheet = {
-  test: '',
-  meta: {
-    version: '0.0.1',
-    type: CharacterSheetType.DND_5E
-  },
-  data: {
-    characterName: { text: '', locked: false },
-    species: { text: '', locked: false },
-    background: { text: '', locked: false },
-    playerName: { text: '', locked: false },
-    classAndLevel: [{ text: '', locked: false }],
-    alignment: { text: '', locked: false },
-    experiencePoints: { text: '', locked: false },
-    abilityScores: {
-      strength: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
-      dexterity: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
-      constitution: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
-      intelligence: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
-      wisdom: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
-      charisma: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
-    },
-    savingThrows: {
-      strength: { proficient: false, text: '', locked: false },
-      dexterity: { proficient: false, text: '', locked: false },
-      constitution: { proficient: false, text: '', locked: false },
-      intelligence: { proficient: false, text: '', locked: false },
-      wisdom: { proficient: false, text: '', locked: false },
-      charisma: { proficient: false, text: '', locked: false },
-    },
-    skills: {
-      acrobatics: { proficient: false, text: '', locked: false },
-      animalHandling: { proficient: false, text: '', locked: false },
-      arcana: { proficient: false, text: '', locked: false },
-      athletics: { proficient: false, text: '', locked: false },
-      deception: { proficient: false, text: '', locked: false },
-      history: { proficient: false, text: '', locked: false },
-      insight: { proficient: false, text: '', locked: false },
-      intimidation: { proficient: false, text: '', locked: false },
-      investigation: { proficient: false, text: '', locked: false },
-      medicine: { proficient: false, text: '', locked: false },
-      nature: { proficient: false, text: '', locked: false },
-      perception: { proficient: false, text: '', locked: false },
-      performance: { proficient: false, text: '', locked: false },
-      persuasion: { proficient: false, text: '', locked: false },
-      religion: { proficient: false, text: '', locked: false },
-      sleightOfHand: { proficient: false, text: '', locked: false },
-      stealth: { proficient: false, text: '', locked: false },
-      survival: { proficient: false, text: '', locked: false },
-    },
-    passiveSkills: {
-      acrobatics: { text: '', locked: false },
-      animalHandling: { text: '', locked: false },
-      arcana: { text: '', locked: false },
-      athletics: { text: '', locked: false },
-      deception: { text: '', locked: false },
-      history: { text: '', locked: false },
-      insight: { text: '', locked: false },
-      intimidation: { text: '', locked: false },
-      investigation: { text: '', locked: false },
-      medicine: { text: '', locked: false },
-      nature: { text: '', locked: false },
-      perception: { text: '', locked: false },
-      performance: { text: '', locked: false },
-      persuasion: { text: '', locked: false },
-      religion: { text: '', locked: false },
-      sleightOfHand: { text: '', locked: false },
-      stealth: { text: '', locked: false },
-      survival: { text: '', locked: false },
-    },
-    inspiration: { text: '', locked: false },
-    proficiencyBonus: { text: '', locked: false },
-    armorClass: { text: '', locked: false },
-    initiative: { text: '', locked: false },
-    speed: { text: '', locked: false },
-    hitPoints: {
-      maximum: { text: '', locked: false },
-      current: { text: '', locked: false },
-      temporary: { text: '', locked: false },
-    },
-    hitDice: {
-      total: { text: '', locked: false },
-      current: { text: '', locked: false },
-    },
-    deathSaves: {
-      success: {
-        first: { checked: false },
-        second: { checked: false },
-        third: { checked: false },
-      },
-      fail: {
-        first: { checked: false },
-        second: { checked: false },
-        third: { checked: false },
-      },
-    },
-    attacks: [],
-    otherProficiencies: {
-      languages: [],
-      weapons: [],
-      armor: [],
-      tools: [],
-      other: [],
-    },
-    features: [],
-    traits: [],
-  },
-}
+const emptyCharacterSheetTemplate: CharacterSheet = EmptyCharacterSheetFactory.emptyCharacterSheetTemplate;
 
 const emptyCharacterSheet = ref();
 const characterSheet = ref();
 const importedCharacterSheet = ref();
+const activeTab = ref(CharacterSheetTabs.STATS);
 
 onBeforeMount(() => {
   characterSheet.value = JSON.parse(JSON.stringify(emptyCharacterSheetTemplate));
@@ -244,6 +142,10 @@ function setComputedProperties() {
     });
   });
 }
+
+function changeTab(tab: CharacterSheetTabs) {
+  activeTab.value = tab;
+}
 </script>
 
 <template>
@@ -252,10 +154,16 @@ function setComputedProperties() {
 
     <Heading :characterSheet="characterSheet" />
 
-    <div class="content grid">
+    <CharacterSheetTabBar :activeTab="activeTab" @changeTab="changeTab" />
+
+    <div v-if="activeTab === CharacterSheetTabs.STATS" class="content grid">
       <Stats :character-sheet="characterSheet" />
       <HealthAndAttack :character-sheet="characterSheet" />
       <FeaturesAndProficiencies :character-sheet="characterSheet" />
+    </div>
+
+    <div v-if="activeTab === CharacterSheetTabs.SPELLS" class="content">
+      <Spells />
     </div>
   </div>
 </template>
@@ -320,9 +228,9 @@ button {
 .page {
   max-width: 1280px;
   width: 90vw;
-}
 
-.content {
-  margin-top: 32px;
+  .content {
+    margin-top: 32px;
+  }
 }
 </style>

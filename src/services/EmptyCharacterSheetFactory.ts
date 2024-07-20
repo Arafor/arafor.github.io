@@ -1,0 +1,113 @@
+import { CharacterSheet, CharacterSheetType } from '../models/CharacterSheet';
+
+export default class EmptyCharacterSheetFactory {
+  static currentVersion = '0.0.1';
+
+  static emptyCharacterSheetTemplate: CharacterSheet = {
+    meta: {
+      version: EmptyCharacterSheetFactory.currentVersion,
+      type: CharacterSheetType.DND_5E
+    },
+    data: {
+      characterName: { text: '', locked: false },
+      species: { text: '', locked: false },
+      background: { text: '', locked: false },
+      playerName: { text: '', locked: false },
+      classAndLevel: [{ text: '', locked: false }],
+      alignment: { text: '', locked: false },
+      experiencePoints: { text: '', locked: false },
+      abilityScores: {
+        strength: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
+        dexterity: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
+        constitution: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
+        intelligence: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
+        wisdom: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
+        charisma: { score: { text: '', locked: false }, modifier: { text: '', locked: false } },
+      },
+      savingThrows: {
+        strength: { proficient: false, text: '', locked: false },
+        dexterity: { proficient: false, text: '', locked: false },
+        constitution: { proficient: false, text: '', locked: false },
+        intelligence: { proficient: false, text: '', locked: false },
+        wisdom: { proficient: false, text: '', locked: false },
+        charisma: { proficient: false, text: '', locked: false },
+      },
+      skills: {
+        acrobatics: { proficient: false, text: '', locked: false },
+        animalHandling: { proficient: false, text: '', locked: false },
+        arcana: { proficient: false, text: '', locked: false },
+        athletics: { proficient: false, text: '', locked: false },
+        deception: { proficient: false, text: '', locked: false },
+        history: { proficient: false, text: '', locked: false },
+        insight: { proficient: false, text: '', locked: false },
+        intimidation: { proficient: false, text: '', locked: false },
+        investigation: { proficient: false, text: '', locked: false },
+        medicine: { proficient: false, text: '', locked: false },
+        nature: { proficient: false, text: '', locked: false },
+        perception: { proficient: false, text: '', locked: false },
+        performance: { proficient: false, text: '', locked: false },
+        persuasion: { proficient: false, text: '', locked: false },
+        religion: { proficient: false, text: '', locked: false },
+        sleightOfHand: { proficient: false, text: '', locked: false },
+        stealth: { proficient: false, text: '', locked: false },
+        survival: { proficient: false, text: '', locked: false },
+      },
+      passiveSkills: {
+        acrobatics: { text: '', locked: false },
+        animalHandling: { text: '', locked: false },
+        arcana: { text: '', locked: false },
+        athletics: { text: '', locked: false },
+        deception: { text: '', locked: false },
+        history: { text: '', locked: false },
+        insight: { text: '', locked: false },
+        intimidation: { text: '', locked: false },
+        investigation: { text: '', locked: false },
+        medicine: { text: '', locked: false },
+        nature: { text: '', locked: false },
+        perception: { text: '', locked: false },
+        performance: { text: '', locked: false },
+        persuasion: { text: '', locked: false },
+        religion: { text: '', locked: false },
+        sleightOfHand: { text: '', locked: false },
+        stealth: { text: '', locked: false },
+        survival: { text: '', locked: false },
+      },
+      inspiration: { text: '', locked: false },
+      proficiencyBonus: { text: '', locked: false },
+      armorClass: { text: '', locked: false },
+      initiative: { text: '', locked: false },
+      speed: { text: '', locked: false },
+      hitPoints: {
+        maximum: { text: '', locked: false },
+        current: { text: '', locked: false },
+        temporary: { text: '', locked: false },
+      },
+      hitDice: {
+        total: { text: '', locked: false },
+        current: { text: '', locked: false },
+      },
+      deathSaves: {
+        success: {
+          first: { checked: false },
+          second: { checked: false },
+          third: { checked: false },
+        },
+        fail: {
+          first: { checked: false },
+          second: { checked: false },
+          third: { checked: false },
+        },
+      },
+      attacks: [],
+      otherProficiencies: {
+        languages: [],
+        weapons: [],
+        armor: [],
+        tools: [],
+        other: [],
+      },
+      features: [],
+      traits: [],
+    },
+  }
+}

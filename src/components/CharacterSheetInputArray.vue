@@ -5,7 +5,7 @@ import CharacterSheetInput from './CharacterSheetInput.vue';
 const props = withDefaults(
     defineProps<{
         characterSheetInputArray: InputType[],
-        minAmount: number,
+        minAmount?: number,
     }>(),
     {
         minAmount: 1,
