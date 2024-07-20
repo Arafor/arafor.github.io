@@ -2,6 +2,7 @@
 import { CharacterSheet } from '../models/CharacterSheet';
 import CharacterSheetInput from './CharacterSheetInput.vue';
 import CharacterSheetCheckbox from './CharacterSheetCheckbox.vue';
+import Attacks from './Attacks.vue';
 
 defineProps<{
     characterSheet: CharacterSheet,
@@ -71,6 +72,8 @@ defineProps<{
                 <span>Hit Dice</span>
             </div>
         </div>
+
+        <Attacks :attacks="characterSheet.data.attacks" />
     </div>
 </template>
 
