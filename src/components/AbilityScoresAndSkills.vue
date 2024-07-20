@@ -28,7 +28,7 @@ defineProps<{
                 <span>Proficiency Bonus</span>
             </div>
             <SavingThrows :characterSheet="characterSheet" />
-            <Skills :skills="characterSheet.data.skills" />
+            <Skills :characterSheet="characterSheet" />
         </div>
         <PassiveSkills :characterSheet="characterSheet" />
     </div>

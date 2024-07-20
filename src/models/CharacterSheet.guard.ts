@@ -2,7 +2,7 @@
  * Generated type guards for "CharacterSheet.ts".
  * WARNING: Do not manually change this file.
  */
-import { CharacterSheet, InputType, InputTypeWithProficiency, AbilityScoreType, AbilityScoreValueType, SkillsType, SavingThrowsType, PassiveSkillsType, CharacterSheetType } from "./CharacterSheet";
+import { CharacterSheet, InputType, InputTypeWithProficiency, AbilityScoreType, AbilityScoreValueType, SkillsType, SavingThrowsType, PassiveSkillsType, CharacterSheetType, CharacterSheetAbility, CharacterSheetSkill } from "./CharacterSheet";
 
 export function isCharacterSheet(obj: unknown): obj is CharacterSheet {
     const typedObj = obj as CharacterSheet
@@ -44,7 +44,14 @@ export function isInputType(obj: unknown): obj is InputType {
             typeof typedObj === "object" ||
             typeof typedObj === "function") &&
         typeof typedObj["text"] === "string" &&
-        typeof typedObj["locked"] === "boolean"
+        typeof typedObj["locked"] === "boolean" &&
+        (typeof typedObj["proficient"] === "undefined" ||
+            typedObj["proficient"] === false ||
+            typedObj["proficient"] === true) &&
+        (typeof typedObj["placeholder"] === "undefined" ||
+            typeof typedObj["placeholder"] === "string") &&
+        (typeof typedObj["value"] === "undefined" ||
+            typeof typedObj["value"] === "string")
     )
 }
 
@@ -156,5 +163,41 @@ export function isCharacterSheetType(obj: unknown): obj is CharacterSheetType {
     return (
         (typedObj === CharacterSheetType.DND_5E ||
             typedObj === CharacterSheetType.SW_5E)
+    )
+}
+
+export function isCharacterSheetAbility(obj: unknown): obj is CharacterSheetAbility {
+    const typedObj = obj as CharacterSheetAbility
+    return (
+        (typedObj === CharacterSheetAbility.STRENGTH ||
+            typedObj === CharacterSheetAbility.DEXTERITY ||
+            typedObj === CharacterSheetAbility.CONSTITUTION ||
+            typedObj === CharacterSheetAbility.WISDOM ||
+            typedObj === CharacterSheetAbility.INTELLIGENCE ||
+            typedObj === CharacterSheetAbility.CHARISMA)
+    )
+}
+
+export function isCharacterSheetSkill(obj: unknown): obj is CharacterSheetSkill {
+    const typedObj = obj as CharacterSheetSkill
+    return (
+        (typedObj === CharacterSheetSkill.ACROBATICS ||
+            typedObj === CharacterSheetSkill.ANIMAL_HANDLING ||
+            typedObj === CharacterSheetSkill.ARCANA ||
+            typedObj === CharacterSheetSkill.ATHLETICS ||
+            typedObj === CharacterSheetSkill.DECEPTION ||
+            typedObj === CharacterSheetSkill.HISTORY ||
+            typedObj === CharacterSheetSkill.INSIGHT ||
+            typedObj === CharacterSheetSkill.INTIMIDATION ||
+            typedObj === CharacterSheetSkill.INVESTIGATION ||
+            typedObj === CharacterSheetSkill.MEDICINE ||
+            typedObj === CharacterSheetSkill.NATURE ||
+            typedObj === CharacterSheetSkill.PERCEPTION ||
+            typedObj === CharacterSheetSkill.PERFORMANCE ||
+            typedObj === CharacterSheetSkill.PERSUASION ||
+            typedObj === CharacterSheetSkill.RELIGION ||
+            typedObj === CharacterSheetSkill.SLEIGHT_OF_HAND ||
+            typedObj === CharacterSheetSkill.STEALTH ||
+            typedObj === CharacterSheetSkill.SURVIVAL)
     )
 }

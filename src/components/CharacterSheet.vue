@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted, onBeforeMount } from 'vue'
-import { CharacterSheet, CharacterSheetType } from '../models/CharacterSheet';
+import { ref, onMounted, onBeforeMount, computed } from 'vue';
+import { CharacterSheet, CharacterSheetType, CharacterSheetAbility, CharacterSheetSkill, skillAbilityMap } from '../models/CharacterSheet';
+import StatService from '../services/StatService';
 import HeadingActions from './HeadingActions.vue';
 import Heading from './Heading.vue';
 import AbilityScoresAndSkills from './AbilityScoresAndSkills.vue';
@@ -9,6 +10,7 @@ import AbilityScoresAndSkills from './AbilityScoresAndSkills.vue';
 // Edit character sheet type
 
 const emptyCharacterSheet: CharacterSheet = {
+  test: '',
   meta: {
     version: '0.0.1',
     type: CharacterSheetType.DND_5E
@@ -87,6 +89,7 @@ const importedCharacterSheet = ref();
 
 onBeforeMount(() => {
   characterSheet.value = JSON.parse(JSON.stringify(emptyCharacterSheet));
+  setComputedProperties();
 });
 
 onMounted(() => {
@@ -108,6 +111,92 @@ onMounted(() => {
 function setImportedCharacterSheet(data: CharacterSheet) {
   characterSheet.value = data;
   importedCharacterSheet.value = JSON.parse(JSON.stringify(data));
+  setComputedProperties();
+}
+
+/**
+ * Creates computed properties that automatically calculate modifiers and provides them as placeholders for inputs
+ * Creates computed properties for values, providing input text or as a fallback using placeholder value
+ */
+function setComputedProperties() {
+  // Proficiency bonus
+  characterSheet.value.data.proficiencyBonus.placeholder = '+2';
+  characterSheet.value.data.proficiencyBonus.value = computed(() => {
+    return characterSheet.value.data.proficiencyBonus.text || characterSheet.value.data.proficiencyBonus.placeholder;
+  });
+
+  // All Abilities
+  Object.values(CharacterSheetAbility).forEach((ability) => {
+    // Ability Modifiers
+    characterSheet.value.data.abilityScores[ability].modifier.placeholder = computed(() => {
+      const statText = characterSheet.value.data.abilityScores[ability].score.text;
+      if (!StatService.getStatNumberString(statText)) {
+        return '';
+      }
+
+      const stat = StatService.getStatNumber(statText);
+      const result = Math.floor((stat - 10) / 2);
+
+      return StatService.getModifierString(result);
+    });
+
+    characterSheet.value.data.abilityScores[ability].modifier.value = computed(() => {
+      return characterSheet.value.data.abilityScores[ability].modifier.text || characterSheet.value.data.abilityScores[ability].modifier.placeholder;
+    });
+
+    // Saving Throws
+    characterSheet.value.data.savingThrows[ability].placeholder = computed(() => {
+      const modifierText = characterSheet.value.data.abilityScores[ability].modifier.value;
+      if (!StatService.getStatNumberString(modifierText)) {
+        return '';
+      }
+
+      const modifier = StatService.getModifierNumber(modifierText);
+      const proficiencyBonus = StatService.getModifierNumber(characterSheet.value.data.proficiencyBonus.value);
+      const result = modifier + (characterSheet.value.data.savingThrows[ability].proficient ? proficiencyBonus : 0);
+
+      return StatService.getModifierString(result);
+    });
+
+    characterSheet.value.data.savingThrows[ability].value = computed(() => {
+      return characterSheet.value.data.savingThrows[ability].text || characterSheet.value.data.savingThrows[ability].placeholder;
+    });
+  });
+
+  // All Skills
+  Object.values(CharacterSheetSkill).forEach((skill) => {
+    // Skill Modifiers
+    characterSheet.value.data.skills[skill].placeholder = computed(() => {
+      const ability = skillAbilityMap[skill]
+      const modifierText = characterSheet.value.data.abilityScores[ability].modifier.value;
+      if (!StatService.getStatNumberString(modifierText)) {
+        return '';
+      }
+
+      const modifier = StatService.getModifierNumber(modifierText);
+      const proficiencyBonus = StatService.getModifierNumber(characterSheet.value.data.proficiencyBonus.value);
+      const result = modifier + (characterSheet.value.data.skills[skill].proficient ? proficiencyBonus : 0);
+
+      return StatService.getModifierString(result);
+    });
+
+    characterSheet.value.data.skills[skill].value = computed(() => {
+      return characterSheet.value.data.skills[skill].text || characterSheet.value.data.skills[skill].placeholder;
+    });
+
+    // Passive Skills
+    characterSheet.value.data.passiveSkills[skill].placeholder = computed(() => {
+      const modifierText = characterSheet.value.data.skills[skill].value;
+      if (!StatService.getStatNumberString(modifierText)) {
+        return '';
+      }
+
+      const modifier = StatService.getModifierNumber(modifierText);
+      const result = 10 + modifier;
+
+      return StatService.getModifierString(result);
+    });
+  });
 }
 </script>
 

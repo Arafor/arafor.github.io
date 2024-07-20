@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { SkillsType } from '../models/CharacterSheet'
+import { CharacterSheet } from '../models/CharacterSheet';
 import CharacterSheetInput from './CharacterSheetInput.vue';
 
 defineProps<{
-    skills: SkillsType,
+    characterSheet: CharacterSheet,
 }>();
 </script>
 
@@ -11,75 +11,75 @@ defineProps<{
 <template>
     <div class="skills">
         <div class="skill-score">
-            <CharacterSheetInput :characterSheetInput="skills.acrobatics" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.skills.acrobatics" />
             <span>Acrobatics <span class="associated-ability">(Dex)</span></span>
         </div>
         <div class="skill-score">
-            <CharacterSheetInput :characterSheetInput="skills.animalHandling" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.skills.animalHandling" />
             <span>Animal Handling <span class="associated-ability">(Wis)</span></span>
         </div>
         <div class="skill-score">
-            <CharacterSheetInput :characterSheetInput="skills.arcana" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.skills.arcana" />
             <span>Arcana <span class="associated-ability">(Int)</span></span>
         </div>
         <div class="skill-score">
-            <CharacterSheetInput :characterSheetInput="skills.athletics" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.skills.athletics" />
             <span>Athletics <span class="associated-ability">(Str)</span></span>
         </div>
         <div class="skill-score">
-            <CharacterSheetInput :characterSheetInput="skills.deception" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.skills.deception" />
             <span>Deception <span class="associated-ability">(Cha)</span></span>
         </div>
         <div class="skill-score">
-            <CharacterSheetInput :characterSheetInput="skills.history" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.skills.history" />
             <span>History <span class="associated-ability">(Int)</span></span>
         </div>
         <div class="skill-score">
-            <CharacterSheetInput :characterSheetInput="skills.insight" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.skills.insight" />
             <span>Insight <span class="associated-ability">(Wis)</span></span>
         </div>
         <div class="skill-score">
-            <CharacterSheetInput :characterSheetInput="skills.intimidation" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.skills.intimidation" />
             <span>Intimidation <span class="associated-ability">(Cha)</span></span>
         </div>
         <div class="skill-score">
-            <CharacterSheetInput :characterSheetInput="skills.investigation" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.skills.investigation" />
             <span>Investigation <span class="associated-ability">(Int)</span></span>
         </div>
         <div class="skill-score">
-            <CharacterSheetInput :characterSheetInput="skills.medicine" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.skills.medicine" />
             <span>Medicine <span class="associated-ability">(Wis)</span></span>
         </div>
         <div class="skill-score">
-            <CharacterSheetInput :characterSheetInput="skills.nature" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.skills.nature" />
             <span>Nature <span class="associated-ability">(Int)</span></span>
         </div>
         <div class="skill-score">
-            <CharacterSheetInput :characterSheetInput="skills.perception" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.skills.perception" />
             <span>Perception <span class="associated-ability">(Wis)</span></span>
         </div>
         <div class="skill-score">
-            <CharacterSheetInput :characterSheetInput="skills.performance" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.skills.performance" />
             <span>Performance <span class="associated-ability">(Cha)</span></span>
         </div>
         <div class="skill-score">
-            <CharacterSheetInput :characterSheetInput="skills.persuasion" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.skills.persuasion" />
             <span>Persuasion <span class="associated-ability">(Cha)</span></span>
         </div>
         <div class="skill-score">
-            <CharacterSheetInput :characterSheetInput="skills.religion" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.skills.religion" />
             <span>Religion <span class="associated-ability">(Int)</span></span>
         </div>
         <div class="skill-score">
-            <CharacterSheetInput :characterSheetInput="skills.sleightOfHand" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.skills.sleightOfHand" />
             <span>Sleight of Hand <span class="associated-ability">(Dex)</span></span>
         </div>
         <div class="skill-score">
-            <CharacterSheetInput :characterSheetInput="skills.stealth" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.skills.stealth" />
             <span>Stealth <span class="associated-ability">(Dex)</span></span>
         </div>
         <div class="skill-score">
-            <CharacterSheetInput :characterSheetInput="skills.survival" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.skills.survival" />
             <span>Survival <span class="associated-ability">(Wis)</span></span>
         </div>
         <span>Skills</span>

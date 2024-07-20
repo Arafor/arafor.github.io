@@ -1,21 +1,17 @@
 <script setup lang="ts">
-import { InputType, InputTypeWithProficiency } from '../models/CharacterSheet'
+import { InputType } from '../models/CharacterSheet'
 
-withDefaults(
-    defineProps<{
-        characterSheetInput: InputTypeWithProficiency | InputType,
-        placeholder: string,
-    }>(),
-    { placeholder: '' }
-);
+defineProps<{
+    characterSheetInput: InputType,
+}>();
 </script>
 
 <template>
     <div class="character-sheet-input">
         <div>
-            <input v-if="Object.hasOwn(characterSheetInput, 'proficient')" type="checkbox"
+            <input v-if="characterSheetInput.hasOwnProperty('proficient')" type="checkbox"
                 :disabled="characterSheetInput.locked" v-model="characterSheetInput.proficient">
-            <input type="text" :disabled="characterSheetInput.locked" :placeholder="placeholder"
+            <input type="text" :disabled="characterSheetInput.locked" :placeholder="characterSheetInput.placeholder"
                 v-model="characterSheetInput.text">
         </div>
         <button @click="characterSheetInput.locked = !characterSheetInput.locked">

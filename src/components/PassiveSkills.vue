@@ -1,23 +1,17 @@
 <script setup lang="ts">
 import { CharacterSheet } from '../models/CharacterSheet';
-import StatService from '../services/StatService';
 import CharacterSheetInput from './CharacterSheetInput.vue';
 
 defineProps<{
     characterSheet: CharacterSheet,
 }>();
-
-function getPassiveSkillPlaceholder(modifier: string) {
-    return String(10 + StatService.getModifierNumber(modifier));
-}
 </script>
 
 <template>
     <div class="passive-skills">
         <div class="skill">
             <div>
-                <CharacterSheetInput :characterSheetInput="characterSheet.data.passiveSkills.perception"
-                    :placeholder="getPassiveSkillPlaceholder(characterSheet.data.skills.perception.text)" />
+                <CharacterSheetInput :characterSheetInput="characterSheet.data.passiveSkills.perception" />
             </div>
             <span>Passive Wisdom (perception)</span>
         </div>

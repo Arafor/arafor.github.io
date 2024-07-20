@@ -1,51 +1,36 @@
 <script setup lang="ts">
 import { CharacterSheet } from '../models/CharacterSheet';
-import StatService from '../services/StatService';
 import CharacterSheetInput from './CharacterSheetInput.vue';
 
-const props = defineProps<{
+defineProps<{
     characterSheet: CharacterSheet,
 }>();
-
-function getPassiveSkillPlaceholder(modifier: string, proficient: boolean) {
-    const modifierNumber = StatService.getModifierNumber(modifier);
-    const proficiencyNumber = StatService.getModifierNumber(props.characterSheet.data.proficiencyBonus.text);
-    const result = 0 + modifierNumber + (proficient ? proficiencyNumber : 0);
-
-    return result > -1 ? `+${String(result)}` : String(result);
-}
 </script>
 
 <template>
     <div class="saving-throws">
         <div class="ability-score">
-            <CharacterSheetInput :characterSheetInput="characterSheet.data.savingThrows.strength"
-                :placeholder="getPassiveSkillPlaceholder(characterSheet.data.abilityScores.strength.modifier.text, characterSheet.data.savingThrows.strength.proficient)" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.savingThrows.strength" />
             <span>Strength</span>
         </div>
         <div class="ability-score">
-            <CharacterSheetInput :characterSheetInput="characterSheet.data.savingThrows.dexterity"
-                :placeholder="getPassiveSkillPlaceholder(characterSheet.data.abilityScores.dexterity.modifier.text, characterSheet.data.savingThrows.dexterity.proficient)" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.savingThrows.dexterity" />
             <span>Dexterity</span>
         </div>
         <div class="ability-score">
-            <CharacterSheetInput :characterSheetInput="characterSheet.data.savingThrows.constitution"
-                :placeholder="getPassiveSkillPlaceholder(characterSheet.data.abilityScores.constitution.modifier.text, characterSheet.data.savingThrows.constitution.proficient)" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.savingThrows.constitution" />
             <span>Constitution</span>
         </div>
         <div class="ability-score">
-            <CharacterSheetInput :characterSheetInput="characterSheet.data.savingThrows.wisdom"
-                :placeholder="getPassiveSkillPlaceholder(characterSheet.data.abilityScores.wisdom.modifier.text, characterSheet.data.savingThrows.wisdom.proficient)" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.savingThrows.wisdom" />
             <span>Wisdom</span>
         </div>
         <div class="ability-score">
-            <CharacterSheetInput :characterSheetInput="characterSheet.data.savingThrows.intelligence"
-                :placeholder="getPassiveSkillPlaceholder(characterSheet.data.abilityScores.intelligence.modifier.text, characterSheet.data.savingThrows.intelligence.proficient)" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.savingThrows.intelligence" />
             <span>Intelligence</span>
         </div>
         <div class="ability-score">
-            <CharacterSheetInput :characterSheetInput="characterSheet.data.savingThrows.charisma"
-                :placeholder="getPassiveSkillPlaceholder(characterSheet.data.abilityScores.charisma.modifier.text, characterSheet.data.savingThrows.charisma.proficient)" />
+            <CharacterSheetInput :characterSheetInput="characterSheet.data.savingThrows.charisma" />
             <span>Charisma</span>
         </div>
         <span>Saving Throws</span>
