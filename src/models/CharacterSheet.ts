@@ -289,6 +289,10 @@ export interface SpellList {
   list: InputTypeWithProficiency[];
   spellSlots: {
     total: InputType;
-    used: InputType;
+    used: NumberCheckboxesType;
   };
+}
+
+export interface NumberCheckboxesType {
+  checked:[]
 }

@@ -2,7 +2,7 @@
  * Generated type guards for "CharacterSheet.ts".
  * WARNING: Do not manually change this file.
  */
-import { CharacterSheet, InputType, InputTypeWithProficiency, TextAreaType, CheckboxType, AbilityScoreType, AbilityScoreValueType, SkillsType, SavingThrowsType, PassiveSkillsType, CharacterSheetType, CharacterSheetAbility, CharacterSheetSkill, WeaponAttackType, CantripList, SpellList } from "./CharacterSheet";
+import { CharacterSheet, InputType, InputTypeWithProficiency, TextAreaType, CheckboxType, AbilityScoreType, AbilityScoreValueType, SkillsType, SavingThrowsType, PassiveSkillsType, CharacterSheetType, CharacterSheetAbility, CharacterSheetSkill, WeaponAttackType, CantripList, SpellList, NumberCheckboxesType } from "./CharacterSheet";
 
 export function isCharacterSheet(obj: unknown): obj is CharacterSheet {
     const typedObj = obj as CharacterSheet
@@ -377,6 +377,16 @@ export function isSpellList(obj: unknown): obj is SpellList {
             typeof typedObj["spellSlots"] === "object" ||
             typeof typedObj["spellSlots"] === "function") &&
         isInputType(typedObj["spellSlots"]["total"]) as boolean &&
-        isInputType(typedObj["spellSlots"]["used"]) as boolean
+        isNumberCheckboxesType(typedObj["spellSlots"]["used"]) as boolean
+    )
+}
+
+export function isNumberCheckboxesType(obj: unknown): obj is NumberCheckboxesType {
+    const typedObj = obj as NumberCheckboxesType
+    return (
+        (typedObj !== null &&
+            typeof typedObj === "object" ||
+            typeof typedObj === "function") &&
+        Array.isArray(typedObj["checked"])
     )
 }

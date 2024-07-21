@@ -7,7 +7,7 @@ export default class EmptyCharacterSheetFactory {
   static inputTypeWithProficiency: InputTypeWithProficiency = { proficient: false, ...EmptyCharacterSheetFactory.inputType };
   static checkboxType: CheckboxType = { checked: false };
   static cantripList: CantripList = { list: [] };
-  static spellList: SpellList = { spellSlots: {total: EmptyCharacterSheetFactory.inputType, used: EmptyCharacterSheetFactory.inputType}, list: [] };
+  static spellList: SpellList = { spellSlots: {total: EmptyCharacterSheetFactory.inputType, used: { checked:[] }}, list: [] };
 
   static emptyCharacterSheetTemplate: CharacterSheet = {
     meta: {
