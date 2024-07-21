@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeMount, computed } from 'vue';
-import { CharacterSheet, CharacterSheetAbility, CharacterSheetSkill, skillAbilityMap, characterSheetAbilityName, characterSheetAbilityNameShort } from '../models/CharacterSheet';
+import { CharacterSheet, CharacterSheetAbility, CharacterSheetSkill, skillAbilityMap } from '../models/CharacterSheet';
 import { CharacterSheetTabs } from '../models/CharacterSheetTabs';
 import EmptyCharacterSheetFactory from '../services/EmptyCharacterSheetFactory';
 import StatService from '../services/StatService';
