@@ -71,7 +71,7 @@ function removeFromList(input: InputType, index: number) {
         }
 
         .remove {
-            grid-column: 12;
+            grid-column: 12/13;
         }
     }
 
