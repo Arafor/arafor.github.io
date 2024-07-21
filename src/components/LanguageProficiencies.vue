@@ -19,10 +19,6 @@ defineProps<{
 .languages .character-sheet-input-array .remove {
     margin-left: auto;
 }
-
-.languages .character-sheet-input-array .character-sheet-input>div>input {
-    width: 30px !important;
-}
 </style>
 
 <style lang="scss" scoped>

@@ -35,8 +35,10 @@ function removeFromList(input: InputType, index: number) {
 
 <template>
     <div class="character-sheet-input-array">
-        <div v-for="(input, index) in characterSheetInputArray" :key="index" class="input-wrapper"
-            :class="{ 'margin-bottom-8': index < characterSheetInputArray.length - 1 }">
+        <div v-for="(input, index) in characterSheetInputArray" :key="index" class="input-wrapper" :class="{
+            'margin-bottom-8': index < characterSheetInputArray.length - 1, 'with-remove':
+                characterSheetInputArray.length > minAmount && !input.locked
+        }">
             <CharacterSheetInput :character-sheet-input="input" />
             <button v-if="characterSheetInputArray.length > minAmount && !input.locked" title="Remove" class="remove"
                 @click="removeFromList(input, index)">-</button>
@@ -65,13 +67,13 @@ function removeFromList(input: InputType, index: number) {
         .character-sheet-input {
             grid-column: 1/13;
 
-            &:has(+.remove) {
+            &.with-remove {
                 grid-column: 1/12;
             }
         }
 
         .remove {
-            grid-column: 12/13;
+            grid-column: 12;
         }
     }
 
