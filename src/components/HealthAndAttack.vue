@@ -31,16 +31,17 @@ defineProps<{
 
         <div class="current-hit-points">
             <div class="maximum-hit-points">
-                <span>Hit Point Maximum</span>
                 <CharacterSheetInput :character-sheet-input="characterSheet.data.hitPoints.maximum" />
+                <span>Hit Point Maximum</span>
             </div>
+
             <CharacterSheetInput :character-sheet-input="characterSheet.data.hitPoints.current" />
             <span>Current Hit Points</span>
-        </div>
 
-        <div class="temporary-hit-points">
-            <CharacterSheetInput :character-sheet-input="characterSheet.data.hitPoints.temporary" />
-            <span>Temporary Hit Points</span>
+            <div class="temporary-hit-points">
+                <CharacterSheetInput :character-sheet-input="characterSheet.data.hitPoints.temporary" />
+                <span>Temporary Hit Points</span>
+            </div>
         </div>
 
         <div class="hit-dice-and-death-saves">
@@ -101,28 +102,27 @@ defineProps<{
     }
 }
 
-.current-hit-points,
-.temporary-hit-points {
+.current-hit-points {
     border: 2px solid rgb(0 0 0);
     padding: 8px;
     padding-bottom: 2px;
     margin-bottom: 16px;
 
-    .maximum-hit-points {
-        display: grid;
-        grid-template-columns: repeat(12, 1fr);
-        gap: 0;
-        margin-bottom: 8px;
-
-        span {
-            grid-column: 1/6;
-            text-align: left;
-        }
-
-        .character-sheet-input {
-            grid-column: 6/13;
-        }
+    >span {
+        font-size: 14px;
     }
+}
+
+.maximum-hit-points {
+    margin-bottom: 8px;
+
+    >span {
+        font-size: 14px;
+    }
+}
+
+.temporary-hit-points {
+    margin-top: 8px;
 
     >span {
         font-size: 14px;
