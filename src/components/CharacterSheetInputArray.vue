@@ -66,10 +66,10 @@ function removeFromList(input: InputType, index: number) {
 
         .character-sheet-input {
             grid-column: 1/13;
+        }
 
-            &.with-remove {
-                grid-column: 1/12;
-            }
+        &.with-remove .character-sheet-input {
+            grid-column: 1/12;
         }
 
         .remove {
