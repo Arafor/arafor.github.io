@@ -57,11 +57,11 @@ defineProps<{
         margin-bottom: 8px;
 
         .character-sheet-input {
-            grid-column: 1/4;
+            grid-column: 1/5;
         }
 
         span {
-            grid-column: 5/13;
+            grid-column: 6/13;
             text-align: left;
         }
     }

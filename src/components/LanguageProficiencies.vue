@@ -17,7 +17,7 @@ defineProps<{
 
 <style lang="scss">
 .languages .character-sheet-input-array .remove {
-    text-align: right;
+    margin-left: auto;
 }
 </style>
 

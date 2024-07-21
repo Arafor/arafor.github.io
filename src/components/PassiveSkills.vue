@@ -176,13 +176,13 @@ function displayName(skill: CharacterSheetSkill) {
 
         >div {
             border: 2px solid rgb(0 0 0);
-            grid-column: 1/3;
+            grid-column: 1/4;
             padding: 8px;
             border-radius: 24px;
         }
 
         >span {
-            grid-column: 3/13;
+            grid-column: 4/13;
             border: 2px solid rgb(0 0 0);
             border-left: none;
             text-align: center;

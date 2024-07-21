@@ -61,12 +61,12 @@ defineProps<{
 
         >div {
             border: 2px solid rgb(0 0 0);
-            grid-column: 1/4;
+            grid-column: 1/5;
             padding: 8px;
         }
 
         >span {
-            grid-column: 4/13;
+            grid-column: 5/13;
             border: 2px solid rgb(0 0 0);
             border-left: none;
             text-align: center;

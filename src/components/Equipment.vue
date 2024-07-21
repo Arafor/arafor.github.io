@@ -32,7 +32,7 @@ defineProps<{
 
 <style lang="scss">
 .equipment .character-sheet-input-array .remove {
-    text-align: right;
+    margin-left: auto;
 }
 </style>
 
