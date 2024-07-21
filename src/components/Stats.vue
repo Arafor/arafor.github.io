@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { CharacterSheet } from '../models/CharacterSheet'
 import CharacterSheetInput from './CharacterSheetInput.vue';
-import AbilityScores from './AbilityScores.vue';
 import SavingThrows from './SavingThrows.vue';
 import Skills from './Skills.vue';
 import PassiveSkills from './PassiveSkills.vue';
@@ -12,8 +11,7 @@ defineProps<{
 </script>
 
 <template>
-    <div class="grid">
-        <AbilityScores :ability-scores="characterSheet.data.abilityScores" />
+    <div>
         <div class="skills">
             <div class="inspiration">
                 <div>
@@ -50,7 +48,7 @@ defineProps<{
 
 <style lang="scss" scoped>
 .skills {
-    grid-column: 2/4;
+    margin-bottom: 32px;
 
     .inspiration,
     .proficiency-bonus {

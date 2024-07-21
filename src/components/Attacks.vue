@@ -24,17 +24,16 @@ function removeAttack(attack: WeaponAttackType, index: number) {
 
 <template>
     <div class="attacks">
-        <div class="attack-grid names">
-            <span>Name</span>
-            <span>Attack Bonus</span>
-            <span>Damage & Type</span>
-        </div>
-        <div v-for="(attack, index) in attacks" :key="index" class="attack-grid inputs">
-            <CharacterSheetInput :character-sheet-input="attack.name" />
-            <CharacterSheetInput :character-sheet-input="attack.attackBonus" />
-            <CharacterSheetInput :character-sheet-input="attack.damage" />
+        <div v-for="(attack, index) in attacks" :key="index" class="attack-grid inputs"
+            :class="{ 'with-gap': index < attacks.length - 1, 'first': index === 0 }">
+            <CharacterSheetInput class="attack-name" :character-sheet-input="attack.name" />
+            <CharacterSheetInput class="attack-bonus" :character-sheet-input="attack.attackBonus" />
+            <span v-if="index === 0" class="attack-name">Name</span>
+            <span v-if="index === 0" class="attack-bonus">Attack Bonus</span>
+            <CharacterSheetInput class="attack-damage" :character-sheet-input="attack.damage" />
             <button v-if="!attack.name.locked && !attack.attackBonus.locked && !attack.damage.locked"
-                @click="removeAttack(attack, index)">-</button>
+                class="attack-remove" @click="removeAttack(attack, index)">-</button>
+            <span v-if="index === 0" class="attack-damage">Damage & Type</span>
         </div>
         <div class="attack-grid under-text">
             <span>Attacks</span>
@@ -61,39 +60,50 @@ function removeAttack(attack: WeaponAttackType, index: number) {
     .attack-grid {
         display: grid;
         grid-template-columns: repeat(12, 1fr);
-        gap: 8px;
+        column-gap: 8px;
+        row-gap: 8px;
 
-        &.names {
-            text-align: left;
+        &.first {
+            row-gap: 0;
+        }
 
-            span:nth-child(1) {
-                grid-column: 1/5;
-            }
-
-            span:nth-child(2) {
-                grid-column: 5/8;
-            }
-
-            span:nth-child(3) {
-                grid-column: 8/13;
-            }
+        &.with-gap {
+            margin-bottom: 24px;
         }
 
         &.inputs {
-            >div:nth-child(1) {
+            >div.attack-name {
+                grid-column: 1/10;
+            }
+
+            >div.attack-bonus {
+                grid-column: 10/13;
+            }
+
+            >div.attack-damage {
+                grid-column: 1/12;
+            }
+
+            button.attack-remove {
+                grid-column: 12;
+            }
+
+            >span.attack-name {
                 grid-column: 1/5;
             }
 
-            >div:nth-child(2) {
-                grid-column: 5/8;
+            >span.attack-bonus {
+                grid-column: 5/13;
+                text-align: right;
             }
 
-            >div:nth-child(3) {
-                grid-column: 8/12;
+            >span.attack-damage {
+                grid-column: 1/13;
             }
 
-            button {
-                grid-column: 12/13;
+            >span {
+                text-align: left;
+                font-size: 14px;
             }
         }
 

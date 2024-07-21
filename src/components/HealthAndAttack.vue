@@ -156,12 +156,12 @@ defineProps<{
             margin-bottom: 8px;
 
             span {
-                grid-column: 1/4;
+                grid-column: 1/5;
                 text-align: left;
             }
 
             .character-sheet-input {
-                grid-column: 4/13;
+                grid-column: 5/13;
             }
         }
     }

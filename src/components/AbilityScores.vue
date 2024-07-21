@@ -8,7 +8,7 @@ defineProps<{
 </script>
 
 <template>
-    <div class="attributes">
+    <div class="ability-scores">
         <div>
             <span>Strength</span>
             <CharacterSheetInput :character-sheet-input="abilityScores.strength.modifier" class="modifier" />
@@ -72,15 +72,15 @@ defineProps<{
 </style>
 
 <style lang="scss" scoped>
-.attributes {
+.ability-scores {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+
     >div {
         border: 2px solid rgb(0 0 0);
         padding: 2px 8px 0;
-        margin-top: 32px;
-
-        &:first-child {
-            margin-top: 0;
-        }
 
         .modifier {
             margin-top: 8px;

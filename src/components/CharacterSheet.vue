@@ -7,6 +7,7 @@ import StatService from '../services/StatService';
 import HeadingActions from './HeadingActions.vue';
 import Heading from './Heading.vue';
 import CharacterSheetTabBar from './CharacterSheetTabBar.vue';
+import AbilityScores from './AbilityScores.vue';
 import Stats from './Stats.vue';
 import HealthAndAttack from './HealthAndAttack.vue';
 import FeaturesAndProficiencies from './FeaturesAndProficiencies.vue';
@@ -216,10 +217,14 @@ function changeTab(tab: CharacterSheetTabs) {
 
     <CharacterSheetTabBar :activeTab="activeTab" @changeTab="changeTab" />
 
-    <div v-if="activeTab === CharacterSheetTabs.STATS" class="content grid">
-      <Stats :character-sheet="characterSheet" />
-      <HealthAndAttack :character-sheet="characterSheet" />
-      <FeaturesAndProficiencies :character-sheet="characterSheet" />
+    <div v-if="activeTab === CharacterSheetTabs.STATS" class="content">
+      <AbilityScores :ability-scores="characterSheet.data.abilityScores" />
+
+      <div class="grid">
+        <Stats :character-sheet="characterSheet" />
+        <HealthAndAttack :character-sheet="characterSheet" />
+        <FeaturesAndProficiencies :character-sheet="characterSheet" />
+      </div>
     </div>
 
     <div v-if="activeTab === CharacterSheetTabs.SPELLS" class="content">
