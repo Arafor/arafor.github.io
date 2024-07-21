@@ -202,6 +202,15 @@ export const characterSheetAbilityName = {
   [CharacterSheetAbility.CHARISMA]: 'Charisma',
 }
 
+export const characterSheetAbilityNameShort = {
+  [CharacterSheetAbility.STRENGTH]: 'Str',
+  [CharacterSheetAbility.DEXTERITY]: 'Dex',
+  [CharacterSheetAbility.CONSTITUTION]: 'Con',
+  [CharacterSheetAbility.WISDOM]: 'Wis',
+  [CharacterSheetAbility.INTELLIGENCE]: 'Int',
+  [CharacterSheetAbility.CHARISMA]: 'Cha',
+}
+
 export enum CharacterSheetSkill {
   ACROBATICS = 'acrobatics',
   ANIMAL_HANDLING = 'animalHandling',

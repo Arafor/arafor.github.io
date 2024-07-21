@@ -3,6 +3,7 @@ import { InputType } from '../models/CharacterSheet'
 
 defineProps<{
     characterSheetInput: InputType,
+    title?: string,
 }>();
 </script>
 
@@ -12,7 +13,7 @@ defineProps<{
             <input v-if="characterSheetInput.hasOwnProperty('proficient')" type="checkbox"
                 :disabled="characterSheetInput.locked" v-model="characterSheetInput.proficient">
             <input type="text" :disabled="characterSheetInput.locked" :placeholder="characterSheetInput.placeholder"
-                v-model="characterSheetInput.text">
+                :title="title" v-model="characterSheetInput.text">
         </div>
         <button @click="characterSheetInput.locked = !characterSheetInput.locked">
             {{ characterSheetInput.locked ? '🔒' : '🔓' }}

@@ -56,11 +56,13 @@ defineProps<{
                     <span>Spell Casting Ability</span>
                 </div>
                 <div class="header-info-block">
-                    <CharacterSheetInput :character-sheet-input="characterSheet.data.spellSaveDc" />
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.spellSaveDc"
+                        title="Spell save DC = 8 + spellcasting ability modifier + proficiency bonus" />
                     <span>Spell Save DC</span>
                 </div>
                 <div class="header-info-block">
-                    <CharacterSheetInput :character-sheet-input="characterSheet.data.spellAttackBonus" />
+                    <CharacterSheetInput :character-sheet-input="characterSheet.data.spellAttackBonus"
+                        title="Spell Attack bonus = Spellcasting ability modifier + Proficiency bonus" />
                     <span>Spell Attack Bonus</span>
                 </div>
             </div>

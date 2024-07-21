@@ -14,11 +14,13 @@ defineProps<{
     <div class="health-and-attack">
         <div class="ac-strip grid">
             <div>
-                <CharacterSheetInput :character-sheet-input="characterSheet.data.armorClass" />
+                <CharacterSheetInput :character-sheet-input="characterSheet.data.armorClass"
+                    title="Without armor or a shield, your character's AC equals 10 + their Dexterity modifier, unless specified otherwise" />
                 <span>Armor Class</span>
             </div>
             <div>
-                <CharacterSheetInput :character-sheet-input="characterSheet.data.initiative" />
+                <CharacterSheetInput :character-sheet-input="characterSheet.data.initiative"
+                    title="Your dexterity modifier" />
                 <span>Initiative</span>
             </div>
             <div>

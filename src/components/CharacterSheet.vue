@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, onMounted, onBeforeMount, computed } from 'vue';
-import { CharacterSheet, CharacterSheetAbility, CharacterSheetSkill, skillAbilityMap } from '../models/CharacterSheet';
+import { CharacterSheet, CharacterSheetAbility, CharacterSheetSkill, skillAbilityMap, characterSheetAbilityName, characterSheetAbilityNameShort } from '../models/CharacterSheet';
 import { CharacterSheetTabs } from '../models/CharacterSheetTabs';
 import EmptyCharacterSheetFactory from '../services/EmptyCharacterSheetFactory';
 import StatService from '../services/StatService';
@@ -16,6 +16,8 @@ import CharacterInfo from './CharacterInfo.vue';
 
 //TODO
 // Edit character sheet type
+// Automate spell stats
+// Store sheet data in cookies/session
 
 const emptyCharacterSheetTemplate: CharacterSheet = EmptyCharacterSheetFactory.emptyCharacterSheetTemplate;
 
@@ -69,6 +71,62 @@ function setComputedProperties() {
   });
   characterSheet.value.data.initiative.value = computed(() => {
     return characterSheet.value.data.initiative.text || characterSheet.value.data.initiative.placeholder;
+  });
+
+  // Armor Class
+  characterSheet.value.data.armorClass.placeholder = computed(() => {
+    const modifierText = characterSheet.value.data.abilityScores.dexterity.modifier.value;
+    if (!StatService.getStatNumberString(modifierText)) {
+      return '';
+    }
+
+    const modifier = StatService.getModifierNumber(modifierText);
+    return String(10 + modifier);
+  });
+  characterSheet.value.data.armorClass.value = computed(() => {
+    return characterSheet.value.data.armorClass.text || characterSheet.value.data.armorClass.placeholder;
+  });
+
+  // Spell Save DC
+  characterSheet.value.data.spellSaveDc.placeholder = computed(() => {
+    const ability = StatService.getMatchingAbility(characterSheet.value.data.spellCastingAbility.text);
+    if (!ability) {
+      return '';
+    }
+
+    const modifierText = characterSheet.value.data.abilityScores[ability].modifier.value;
+    if (!StatService.getStatNumberString(modifierText)) {
+      return '';
+    }
+
+    const modifier = StatService.getModifierNumber(modifierText);
+    const proficiencyBonus = StatService.getModifierNumber(characterSheet.value.data.proficiencyBonus.value);
+
+    return String(8 + modifier + proficiencyBonus);
+  });
+  characterSheet.value.data.spellSaveDc.value = computed(() => {
+    return characterSheet.value.data.spellSaveDc.text || characterSheet.value.data.spellSaveDc.placeholder;
+  });
+
+  // Spell Attack Bonus
+  characterSheet.value.data.spellAttackBonus.placeholder = computed(() => {
+    const ability = StatService.getMatchingAbility(characterSheet.value.data.spellCastingAbility.text);
+    if (!ability) {
+      return '';
+    }
+
+    const modifierText = characterSheet.value.data.abilityScores[ability].modifier.value;
+    if (!StatService.getStatNumberString(modifierText)) {
+      return '';
+    }
+
+    const modifier = StatService.getModifierNumber(modifierText);
+    const proficiencyBonus = StatService.getModifierNumber(characterSheet.value.data.proficiencyBonus.value);
+
+    return StatService.getModifierString(modifier + proficiencyBonus);
+  });
+  characterSheet.value.data.spellSaveDc.value = computed(() => {
+    return characterSheet.value.data.spellSaveDc.text || characterSheet.value.data.spellSaveDc.placeholder;
   });
 
   // All Abilities
