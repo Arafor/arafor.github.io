@@ -18,12 +18,12 @@ defineProps<{
 <style lang="scss">
 .languages .character-sheet-input-array .remove {
     margin-left: auto;
-    display: block;
 }
 
-// .languages .character-sheet-input-array .character-sheet-input>div>input {
-//     display: inline;
-// }</style>
+.languages .character-sheet-input-array .character-sheet-input>div>input {
+    width: 30px !important;
+}
+</style>
 
 <style lang="scss" scoped>
 .languages {
